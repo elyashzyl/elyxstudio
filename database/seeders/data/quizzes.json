@@ -1,0 +1,47 @@
+[
+    {
+        "id": 2,
+        "teacher_id": 4,
+        "title": "Color Theory and Color Harmony",
+        "description": null,
+        "grade": "Grade 10",
+        "time_limit_minutes": 30,
+        "is_published": 1,
+        "created_at": "2026-07-24 00:19:58",
+        "updated_at": "2026-09-18 06:11:54",
+        "section_id": null,
+        "closes_at": "2026-07-30 05:17:17",
+        "quarter_id": null,
+        "school_year_id": null
+    },
+    {
+        "id": 3,
+        "teacher_id": 4,
+        "title": "Comparison and Logical Operators",
+        "description": null,
+        "grade": "Grade 8",
+        "time_limit_minutes": 30,
+        "is_published": 1,
+        "created_at": "2026-07-24 01:25:46",
+        "updated_at": "2026-09-19 00:37:05",
+        "section_id": null,
+        "closes_at": "2026-09-19 00:37:04",
+        "quarter_id": null,
+        "school_year_id": null
+    },
+    {
+        "id": 7,
+        "teacher_id": 4,
+        "title": "Shapes, Colors, and Graphic Elements in Adobe InDesign",
+        "description": "Read each question carefully. Choose the best answer. Some choices may have similar functions, so analyze the specific situation before answering.",
+        "grade": "Grade 10",
+        "time_limit_minutes": 30,
+        "is_published": 1,
+        "created_at": "2026-10-12 01:08:43",
+        "updated_at": "2026-10-12 01:08:43",
+        "section_id": null,
+        "closes_at": null,
+        "quarter_id": null,
+        "school_year_id": null
+    }
+]

@@ -1,0 +1,102 @@
+[
+    {
+        "id": 61,
+        "seatwork_id": 1,
+        "question_text": "What is the purpose of __init__()?",
+        "type": "identification",
+        "points": 1,
+        "order": 0,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    },
+    {
+        "id": 62,
+        "seatwork_id": 1,
+        "question_text": "Where is __init__() written?",
+        "type": "identification",
+        "points": 1,
+        "order": 1,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    },
+    {
+        "id": 63,
+        "seatwork_id": 1,
+        "question_text": "What does self refer to?",
+        "type": "identification",
+        "points": 1,
+        "order": 2,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    },
+    {
+        "id": 64,
+        "seatwork_id": 1,
+        "question_text": "What are parameters used for?",
+        "type": "identification",
+        "points": 1,
+        "order": 3,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    },
+    {
+        "id": 65,
+        "seatwork_id": 1,
+        "question_text": "What happens when an object is created using __init__()?",
+        "type": "identification",
+        "points": 1,
+        "order": 4,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    },
+    {
+        "id": 66,
+        "seatwork_id": 1,
+        "question_text": "What is the class name?",
+        "type": "identification",
+        "points": 1,
+        "order": 5,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    },
+    {
+        "id": 67,
+        "seatwork_id": 1,
+        "question_text": "What is the constructor?",
+        "type": "identification",
+        "points": 1,
+        "order": 6,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    },
+    {
+        "id": 68,
+        "seatwork_id": 1,
+        "question_text": "What is one parameter?",
+        "type": "identification",
+        "points": 1,
+        "order": 7,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    },
+    {
+        "id": 69,
+        "seatwork_id": 1,
+        "question_text": "What is one attribute?",
+        "type": "identification",
+        "points": 1,
+        "order": 8,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    },
+    {
+        "id": 70,
+        "seatwork_id": 1,
+        "question_text": "What does self.name = name do?",
+        "type": "identification",
+        "points": 1,
+        "order": 9,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    }
+]

@@ -1,0 +1,39 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    expose:
+      - "80"
+    environment:
+      APP_NAME: ${APP_NAME:-ELYX Studio}
+      APP_ENV: production
+      APP_DEBUG: "false"
+      APP_KEY: ${APP_KEY:?Set APP_KEY in Dokploy}
+      APP_URL: ${APP_URL:?Set APP_URL in Dokploy, including https://}
+      SESSION_SECURE_COOKIE: "true"
+      SESSION_HTTP_ONLY: "true"
+      SESSION_SAME_SITE: lax
+      LOG_CHANNEL: stderr
+      DB_CONNECTION: sqlite
+      DB_DATABASE: /var/www/html/database/database.sqlite
+      RUN_MIGRATIONS: "true"
+      BROADCAST_CONNECTION: reverb
+      REVERB_APP_ID: ${REVERB_APP_ID:-elyxstudio}
+      REVERB_APP_KEY: ${REVERB_APP_KEY:?Set REVERB_APP_KEY in Dokploy}
+      REVERB_APP_SECRET: ${REVERB_APP_SECRET:?Set REVERB_APP_SECRET in Dokploy}
+      REVERB_HOST: ${APP_DOMAIN:?Set APP_DOMAIN in Dokploy to the public domain without https://}
+      REVERB_PORT: "443"
+      REVERB_SCHEME: https
+      REVERB_SERVER_HOST: 0.0.0.0
+      REVERB_SERVER_PORT: "8080"
+      COMMERCE_RESERVATION_MINUTES: ${COMMERCE_RESERVATION_MINUTES:-60}
+      COMMERCE_CONFIRMATION_MINUTES: ${COMMERCE_CONFIRMATION_MINUTES:-60}
+    volumes:
+      - elyxstudio_storage:/var/www/html/storage
+      - elyxstudio_database:/var/www/html/database
+
+volumes:
+  elyxstudio_storage:
+  elyxstudio_database:

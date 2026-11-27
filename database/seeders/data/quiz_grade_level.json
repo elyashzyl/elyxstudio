@@ -1,0 +1,14 @@
+[
+    {
+        "quiz_id": 2,
+        "grade_level_id": 4
+    },
+    {
+        "quiz_id": 3,
+        "grade_level_id": 2
+    },
+    {
+        "quiz_id": 7,
+        "grade_level_id": 4
+    }
+]

@@ -1,0 +1,6 @@
+{
+    "$schema": "https://openship.io/openship.schema.json",
+    "env": {
+        "NIXPACKS_PHP_VERSION": "8.3"
+    }
+}

@@ -1,0 +1,800 @@
+/*
+ * ELYX commerce contrast layer.
+ *
+ * EduPulse owns the global theme and intentionally recolors generic
+ * .min-h-screen, bg-white, form controls, and text utilities in dark mode.
+ * ELYX storefront pages are a branded light commerce surface, so keep their
+ * authored sky-blue palette isolated from those global portal rules.
+ */
+
+.elyx-site {
+    --elyx-sky: #27a9e8;
+    --elyx-sky-dark: #0f6ea8;
+    --elyx-sky-deep: #0b527e;
+    --elyx-navy: #102a43;
+    --elyx-ice: #f4fbff;
+    --elyx-line: #d7ebf8;
+    --elyx-muted: #55718a;
+    color-scheme: light;
+    background-color: var(--elyx-ice);
+    color: var(--elyx-navy);
+}
+
+/* Authenticated ELYX workspace shell. The interaction model follows the
+ * EduPulse sidebar layout, while the presentation remains ELYX-specific. */
+.elyx-panel-shell {
+    --elyx-panel-navy: #102a43;
+    --elyx-panel-muted: #5a7890;
+    --elyx-panel-line: #d4eaf6;
+    --elyx-panel-surface: #ffffff;
+    --elyx-panel-sidebar: #f8fcff;
+    --elyx-panel-active: #0f6ea8;
+    display: flex;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(114, 210, 247, 0.18), transparent 28rem),
+        #f4fbff;
+    color: var(--elyx-panel-navy);
+    color-scheme: light;
+}
+
+.elyx-panel-sidebar {
+    width: 17rem;
+    flex: 0 0 17rem;
+    border-right: 1px solid var(--elyx-panel-line);
+    background: rgba(248, 252, 255, 0.96);
+    box-shadow: 12px 0 36px rgba(16, 42, 67, 0.04);
+}
+
+.elyx-panel-sidebar-desktop {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.elyx-panel-sidebar-mobile {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 60;
+    transform: translateX(-105%);
+    transition: transform 220ms ease;
+    box-shadow: 18px 0 40px rgba(16, 42, 67, 0.14);
+}
+
+.elyx-panel-sidebar-mobile.is-open {
+    transform: translateX(0);
+}
+
+.elyx-panel-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: rgba(16, 42, 67, 0.35);
+    backdrop-filter: blur(4px);
+}
+
+.elyx-panel-brand {
+    display: flex;
+    min-height: 5.5rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    border-bottom: 1px solid var(--elyx-panel-line);
+    padding: 1.25rem 1.25rem;
+}
+
+.elyx-panel-brand-link {
+    display: inline-flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--elyx-panel-navy);
+}
+
+.elyx-panel-brand-link > span:last-child {
+    display: grid;
+    min-width: 0;
+    gap: 0.18rem;
+}
+
+.elyx-panel-brand-link strong {
+    font-size: 0.9rem;
+    letter-spacing: 0.17em;
+}
+
+.elyx-panel-brand-link small,
+.elyx-panel-context small {
+    color: var(--elyx-panel-muted);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.elyx-panel-logo,
+.elyx-panel-context-mark {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.85rem;
+    background: linear-gradient(135deg, #27a9e8, #0f6ea8);
+    color: #ffffff;
+    box-shadow: 0 8px 18px rgba(39, 169, 232, 0.24);
+}
+
+.elyx-panel-logo {
+    height: 2.65rem;
+    width: 2.65rem;
+}
+
+.elyx-panel-context {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1rem 1rem 0.5rem;
+    border: 1px solid #b9e2f6;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #e8f7fe, #ffffff);
+    padding: 0.8rem;
+}
+
+.elyx-panel-context-mark {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 0.65rem;
+    box-shadow: none;
+}
+
+.elyx-panel-context span:last-child {
+    display: grid;
+    min-width: 0;
+    gap: 0.15rem;
+}
+
+.elyx-panel-context strong {
+    overflow: hidden;
+    color: var(--elyx-panel-navy);
+    font-size: 0.78rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.elyx-panel-icon-button,
+.elyx-panel-menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--elyx-panel-line);
+    border-radius: 0.75rem;
+    background: #ffffff;
+    color: var(--elyx-panel-muted);
+}
+
+.elyx-panel-icon-button {
+    height: 2.25rem;
+    width: 2.25rem;
+}
+
+.elyx-panel-menu-button {
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.elyx-panel-nav {
+    display: grid;
+    gap: 0.35rem;
+    padding: 1.25rem 0.8rem;
+}
+
+.elyx-panel-nav-label,
+.elyx-panel-kicker {
+    color: #0f6ea8;
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.elyx-panel-nav-label {
+    margin: 0 0.65rem 0.35rem;
+}
+
+.elyx-panel-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    border-radius: 0.85rem;
+    color: var(--elyx-panel-muted);
+    font-size: 0.82rem;
+    font-weight: 750;
+    padding: 0.7rem 0.65rem;
+    transition: 160ms ease;
+}
+
+.elyx-panel-nav-link:hover {
+    background: #e8f7fe;
+    color: #0f6ea8;
+}
+
+.elyx-panel-nav-link.is-active {
+    background: linear-gradient(135deg, #0f6ea8, #27a9e8);
+    color: #ffffff;
+    box-shadow: 0 8px 18px rgba(15, 110, 168, 0.2);
+}
+
+.elyx-panel-nav-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 2rem;
+    flex: 0 0 auto;
+    border-radius: 0.65rem;
+    background: #e8f7fe;
+    color: #0f6ea8;
+}
+
+.elyx-panel-nav-link.is-active .elyx-panel-nav-icon {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+.elyx-panel-profile {
+    display: grid;
+    gap: 0.7rem;
+    margin-top: auto;
+    border-top: 1px solid var(--elyx-panel-line);
+    padding: 1rem;
+}
+
+.elyx-panel-profile-row {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--elyx-panel-navy);
+}
+
+.elyx-panel-avatar {
+    display: inline-flex;
+    height: 2.35rem;
+    width: 2.35rem;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.8rem;
+    background: #d9f2fd;
+    color: #0f6ea8;
+    font-size: 0.82rem;
+    font-weight: 850;
+}
+
+.elyx-panel-profile strong {
+    color: var(--elyx-panel-navy);
+    font-size: 0.75rem;
+}
+
+.elyx-panel-profile small {
+    margin-top: 0.1rem;
+    color: var(--elyx-panel-muted);
+    font-size: 0.65rem;
+}
+
+.elyx-panel-logout {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.7rem;
+    color: var(--elyx-panel-muted);
+    font-size: 0.72rem;
+    font-weight: 750;
+    padding: 0.55rem 0.4rem;
+    text-align: left;
+}
+
+.elyx-panel-logout:hover {
+    background: #fff0f0;
+    color: #c24141;
+}
+
+.elyx-panel-content {
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.elyx-panel-header {
+    display: flex;
+    min-height: 5.5rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid var(--elyx-panel-line);
+    background: rgba(255, 255, 255, 0.82);
+    padding: 1rem clamp(1.25rem, 4vw, 3rem);
+    backdrop-filter: blur(14px);
+}
+
+.elyx-panel-header p:not(.elyx-panel-kicker) {
+    margin-top: 0.25rem;
+    color: var(--elyx-panel-muted);
+}
+
+.elyx-panel-store-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    border: 1px solid #b9e2f6;
+    border-radius: 0.75rem;
+    background: #ffffff;
+    color: #0f6ea8;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 0.65rem 0.8rem;
+}
+
+.elyx-panel-store-link:hover {
+    border-color: #27a9e8;
+    background: #e8f7fe;
+}
+
+.elyx-panel-main {
+    min-height: calc(100vh - 5.5rem);
+}
+
+.elyx-panel-shell .commerce-admin-workspace {
+    min-height: calc(100vh - 5.5rem);
+    background: transparent;
+}
+
+@media (max-width: 1023px) {
+    .elyx-panel-shell {
+        display: block;
+    }
+}
+
+/* Dark-mode portal rules must never turn the ELYX panel's authored text into
+ * dark text on a dark surface. The panel intentionally stays light like the
+ * public store so labels remain readable in every theme setting. */
+.dark-mode .elyx-panel-shell,
+.dark .elyx-panel-shell {
+    background: #f4fbff !important;
+    color: #102a43 !important;
+    color-scheme: light;
+}
+
+.dark-mode .elyx-panel-shell .elyx-panel-sidebar,
+.dark .elyx-panel-shell .elyx-panel-sidebar,
+.dark-mode .elyx-panel-shell .elyx-panel-header,
+.dark .elyx-panel-shell .elyx-panel-header {
+    background: rgba(248, 252, 255, 0.98) !important;
+    border-color: #d4eaf6 !important;
+}
+
+.dark-mode .elyx-panel-shell .commerce-admin-workspace,
+.dark .elyx-panel-shell .commerce-admin-workspace {
+    --gl-primary: #0f6ea8;
+    --gl-primary-glow: rgba(39, 169, 232, 0.28);
+    --gl-secondary: #0b527e;
+    --gl-text-primary: #102a43;
+    --gl-text-secondary: #355d78;
+    --gl-text-muted: #4b6b82;
+}
+
+/* Dark mode must not turn the light ELYX storefront into dark navy text on
+ * dark EduPulse surfaces. This intentionally applies to all ELYX commerce
+ * layouts, including buyer, seller, order, and public storefront screens. */
+.dark-mode .elyx-site,
+.dark .elyx-site {
+    background-color: var(--elyx-ice) !important;
+    color: var(--elyx-navy) !important;
+    color-scheme: light;
+}
+
+.dark-mode .elyx-site [class*='bg-white'],
+.dark .elyx-site [class*='bg-white'] {
+    background-color: #ffffff !important;
+}
+
+.dark-mode .elyx-site [class*='bg-\[\#f4fbff\]'],
+.dark .elyx-site [class*='bg-\[\#f4fbff\]'] {
+    background-color: var(--elyx-ice) !important;
+}
+
+/* Preserve readable authored ELYX utility colors under global dark-mode
+ * utility overrides. */
+.dark-mode .elyx-site [class*='text-\[\#102a43\]'],
+.dark .elyx-site [class*='text-\[\#102a43\]'] {
+    color: var(--elyx-navy) !important;
+}
+
+.dark-mode .elyx-site [class*='text-\[\#55718a\]'],
+.dark .elyx-site [class*='text-\[\#55718a\]'],
+.dark-mode .elyx-site [class*='text-\[\#8aa4b8\]'],
+.dark .elyx-site [class*='text-\[\#8aa4b8\]'] {
+    color: var(--elyx-muted) !important;
+}
+
+.dark-mode .elyx-site [class*='text-\[\#0f6ea8\]'],
+.dark .elyx-site [class*='text-\[\#0f6ea8\]'] {
+    color: var(--elyx-sky-dark) !important;
+}
+
+/* #8aa4b8 is too faint on white for small labels. Improve it in both modes. */
+.elyx-site [class*='text-\[\#8aa4b8\]'] {
+    color: var(--elyx-muted) !important;
+}
+
+/* The inherited dark-mode input rules use !important. ELYX controls are
+ * deliberately light because the surrounding commerce surface is light. */
+.dark-mode .elyx-site input,
+.dark-mode .elyx-site textarea,
+.dark-mode .elyx-site select,
+.dark .elyx-site input,
+.dark .elyx-site textarea,
+.dark .elyx-site select {
+    background-color: #ffffff !important;
+    border-color: var(--elyx-line) !important;
+    color: var(--elyx-navy) !important;
+    color-scheme: light;
+}
+
+.dark-mode .elyx-site input::placeholder,
+.dark-mode .elyx-site textarea::placeholder,
+.dark .elyx-site input::placeholder,
+.dark .elyx-site textarea::placeholder {
+    color: #55718a !important;
+}
+
+/* Admin commerce workspace: keep the selected EduPulse surface theme, but
+ * give the operational UI reliable contrast and a sky-blue action accent. */
+.commerce-admin-workspace {
+    --gl-primary: #0f6ea8;
+    --gl-primary-glow: rgba(39, 169, 232, 0.28);
+    --gl-secondary: #0b527e;
+    --gl-text-primary: #102a43;
+    --gl-text-secondary: #355d78;
+    --gl-text-muted: #4b6b82;
+}
+
+.dark-mode .commerce-admin-workspace,
+.dark .commerce-admin-workspace {
+    --gl-primary: #72d2f7;
+    --gl-primary-glow: rgba(114, 210, 247, 0.3);
+    --gl-secondary: #9cddf7;
+    --gl-text-primary: #f5fbff;
+    --gl-text-secondary: #d5e7f2;
+    --gl-text-muted: #b8ccda;
+}
+
+.commerce-admin-workspace .admin-label,
+.commerce-admin-workspace [style*='color: var(--gl-text-muted)'] {
+    color: var(--gl-text-muted) !important;
+}
+
+.commerce-admin-workspace [style*='color: var(--gl-text-secondary)'] {
+    color: var(--gl-text-secondary) !important;
+}
+
+.commerce-admin-workspace [style*='color: var(--gl-text-primary)'] {
+    color: var(--gl-text-primary) !important;
+}
+
+.commerce-admin-workspace .admin-input {
+    border-color: var(--gl-border);
+    background: var(--gl-surface-2);
+    color: var(--gl-text-primary);
+}
+
+.commerce-admin-workspace .admin-input::placeholder {
+    color: var(--gl-text-muted);
+}
+
+/* Inline admin buttons use the theme primary variable and white text. In
+ * dark themes the primary is intentionally light for links/icons, so make
+ * those filled action buttons use the accessible deep sky-blue background. */
+.commerce-admin-workspace button[style*='background: var(--gl-primary)'] {
+    background: #0f6ea8 !important;
+    color: #ffffff !important;
+}
+
+.commerce-admin-workspace button[style*='background: var(--gl-primary)']:hover {
+    background: #0b527e !important;
+}
+
+.dark-mode .commerce-admin-workspace [class*='text-\[\#0f6ea8\]'],
+.dark .commerce-admin-workspace [class*='text-\[\#0f6ea8\]'] {
+    color: #72d2f7 !important;
+}
+
+.dark-mode .commerce-admin-workspace input,
+.dark-mode .commerce-admin-workspace textarea,
+.dark-mode .commerce-admin-workspace select,
+.dark .commerce-admin-workspace input,
+.dark .commerce-admin-workspace textarea,
+.dark .commerce-admin-workspace select {
+    color: var(--gl-text-primary) !important;
+}
+
+.dark-mode .commerce-admin-workspace select option,
+.dark .commerce-admin-workspace select option {
+    background-color: var(--gl-surface) !important;
+    color: var(--gl-text-primary) !important;
+}
+
+/* Final ELYX contrast contract. EduPulse themes redefine the shared --gl-*
+ * variables and apply high-specificity dark-mode rules to generic links,
+ * tables, and controls. Re-declare the ELYX surface variables locally so
+ * those inherited rules cannot make ELYX text disappear or lose contrast. */
+.elyx-site,
+.elyx-panel-shell {
+    --gl-bg: #f4fbff;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #f4fbff;
+    --gl-surface-3: #e8f7fe;
+    --gl-border: #d7ebf8;
+    --gl-border-hover: #9edaf3;
+    --gl-text-primary: #102a43;
+    --gl-text-secondary: #355d78;
+    --gl-text-muted: #55718a;
+    --gl-primary: #0f6ea8;
+    --gl-primary-glow: rgba(39, 169, 232, 0.28);
+    --gl-secondary: #0b527e;
+    --gl-accent: #b45309;
+    --gl-success: #059669;
+    --gl-danger: #dc2626;
+    --gl-header-bg: rgba(255, 255, 255, 0.92);
+    --gl-sidebar-bg: #f8fcff;
+    background-color: #f4fbff;
+    color: #102a43;
+    color-scheme: light;
+}
+
+.dark-mode .elyx-site,
+.dark .elyx-site,
+.dark-mode .elyx-panel-shell,
+.dark .elyx-panel-shell {
+    --gl-bg: #f4fbff;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #f4fbff;
+    --gl-surface-3: #e8f7fe;
+    --gl-border: #d7ebf8;
+    --gl-border-hover: #9edaf3;
+    --gl-text-primary: #102a43;
+    --gl-text-secondary: #355d78;
+    --gl-text-muted: #55718a;
+    --gl-primary: #0f6ea8;
+    --gl-primary-glow: rgba(39, 169, 232, 0.28);
+    --gl-secondary: #0b527e;
+    --gl-accent: #b45309;
+    --gl-success: #059669;
+    --gl-danger: #dc2626;
+    --gl-header-bg: rgba(255, 255, 255, 0.92);
+    --gl-sidebar-bg: #f8fcff;
+    background-color: #f4fbff !important;
+    color: #102a43 !important;
+    color-scheme: light;
+}
+
+/* Generic dark-mode selectors from game-theme.css must not recolor the ELYX
+ * sidebar navigation, including the active link and its icon. */
+.dark-mode .elyx-panel-shell aside nav a,
+.dark .elyx-panel-shell aside nav a {
+    color: #55718a !important;
+}
+
+.dark-mode .elyx-panel-shell aside nav a:hover,
+.dark .elyx-panel-shell aside nav a:hover {
+    background: #e8f7fe !important;
+    color: #0f6ea8 !important;
+}
+
+.dark-mode .elyx-panel-shell aside nav a.elyx-panel-nav-link.is-active,
+.dark .elyx-panel-shell aside nav a.elyx-panel-nav-link.is-active {
+    background: linear-gradient(135deg, #0f6ea8, #27a9e8) !important;
+    color: #ffffff !important;
+}
+
+.dark-mode .elyx-panel-shell .elyx-panel-nav-icon,
+.dark .elyx-panel-shell .elyx-panel-nav-icon {
+    background: #e8f7fe !important;
+    color: #0f6ea8 !important;
+}
+
+.dark-mode .elyx-panel-shell .elyx-panel-nav-link.is-active .elyx-panel-nav-icon,
+.dark .elyx-panel-shell .elyx-panel-nav-link.is-active .elyx-panel-nav-icon {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+}
+
+/* The admin page uses inline var(--gl-*) colors. Keep its cards, tables, and
+ * labels on the same readable light ELYX surface even when the portal is in
+ * a dark theme. */
+.dark-mode .elyx-panel-shell .commerce-admin-workspace,
+.dark .elyx-panel-shell .commerce-admin-workspace {
+    --gl-bg: #f4fbff;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #f4fbff;
+    --gl-surface-3: #e8f7fe;
+    --gl-border: #d7ebf8;
+    --gl-text-primary: #102a43;
+    --gl-text-secondary: #355d78;
+    --gl-text-muted: #55718a;
+    --gl-primary: #0f6ea8;
+    --gl-secondary: #0b527e;
+    --gl-success: #059669;
+    --gl-danger: #dc2626;
+}
+
+.dark-mode .elyx-panel-shell .commerce-admin-workspace table,
+.dark .elyx-panel-shell .commerce-admin-workspace table,
+.dark-mode .elyx-panel-shell .commerce-admin-workspace table td,
+.dark .elyx-panel-shell .commerce-admin-workspace table td,
+.dark-mode .elyx-panel-shell .commerce-admin-workspace table th,
+.dark .elyx-panel-shell .commerce-admin-workspace table th,
+.dark-mode .elyx-panel-shell .commerce-admin-workspace p,
+.dark .elyx-panel-shell .commerce-admin-workspace p,
+.dark-mode .elyx-panel-shell .commerce-admin-workspace label,
+.dark .elyx-panel-shell .commerce-admin-workspace label {
+    color: var(--gl-text-primary) !important;
+}
+
+.dark-mode .elyx-panel-shell .commerce-admin-workspace [style*='color: var(--gl-text-muted)'],
+.dark .elyx-panel-shell .commerce-admin-workspace [style*='color: var(--gl-text-muted)'],
+.dark-mode .elyx-panel-shell .commerce-admin-workspace .admin-label,
+.dark .elyx-panel-shell .commerce-admin-workspace .admin-label {
+    color: var(--gl-text-muted) !important;
+}
+
+.dark-mode .elyx-panel-shell .commerce-admin-workspace [style*='color: var(--gl-text-secondary)'],
+.dark .elyx-panel-shell .commerce-admin-workspace [style*='color: var(--gl-text-secondary)'] {
+    color: var(--gl-text-secondary) !important;
+}
+
+/* The teacher compatibility route still renders the legacy EduPulse shell,
+ * but its commerce workspace is ELYX-owned and needs the same light contrast
+ * contract as the new panel route. */
+.dark-mode .commerce-admin-workspace,
+.dark .commerce-admin-workspace {
+    --gl-bg: #f4fbff;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #f4fbff;
+    --gl-surface-3: #e8f7fe;
+    --gl-border: #d7ebf8;
+    --gl-text-primary: #102a43;
+    --gl-text-secondary: #355d78;
+    --gl-text-muted: #55718a;
+    --gl-primary: #0f6ea8;
+    --gl-secondary: #0b527e;
+    --gl-success: #059669;
+    --gl-danger: #dc2626;
+    background: #f4fbff !important;
+    color: #102a43 !important;
+}
+
+/* ELYX account directory. This is intentionally separate from the inherited
+ * EduPulse user-management surface, while the secure CRUD actions remain the
+ * same server-side workflow. */
+.commerce-users-workspace {
+    min-height: calc(100vh - 5.5rem);
+    background: transparent;
+    color: var(--gl-text-primary);
+}
+
+.commerce-users-summary {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.commerce-users-summary-card {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1px solid var(--gl-border);
+    border-radius: 1rem;
+    background: var(--gl-surface);
+    padding: 0.9rem 1rem;
+    box-shadow: 0 8px 22px rgba(16, 42, 67, 0.04);
+}
+
+.commerce-users-summary-card > span:last-child {
+    display: grid;
+    min-width: 0;
+    gap: 0.15rem;
+}
+
+.commerce-users-summary-card strong {
+    color: var(--gl-text-primary);
+    font-size: 1.15rem;
+    line-height: 1;
+}
+
+.commerce-users-summary-card small {
+    overflow: hidden;
+    color: var(--gl-text-muted);
+    font-size: 0.68rem;
+    font-weight: 750;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.commerce-users-summary-icon {
+    display: inline-flex;
+    height: 2.25rem;
+    width: 2.25rem;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    background: #e8f7fe;
+    color: #0f6ea8;
+}
+
+.commerce-users-summary-card--total {
+    border-color: #b9e2f6;
+    background: linear-gradient(135deg, #ffffff, #eefaff);
+}
+
+.commerce-users-workspace .gl-glow-card {
+    border: 1px solid var(--gl-border);
+    background: var(--gl-surface);
+    box-shadow: 0 8px 22px rgba(16, 42, 67, 0.04);
+}
+
+.commerce-users-workspace .status-badge {
+    white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+    .commerce-users-summary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.dark-mode .elyx-panel-shell .commerce-users-workspace,
+.dark .elyx-panel-shell .commerce-users-workspace {
+    --gl-bg: #f4fbff;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #f4fbff;
+    --gl-surface-3: #e8f7fe;
+    --gl-border: #d7ebf8;
+    --gl-text-primary: #102a43;
+    --gl-text-secondary: #355d78;
+    --gl-text-muted: #55718a;
+    --gl-primary: #0f6ea8;
+    --gl-secondary: #0b527e;
+    --gl-danger: #dc2626;
+    background: transparent !important;
+    color: #102a43 !important;
+}
+
+/* Complete the fixed ELYX utility palette for classes not covered by the
+ * original dark-mode compatibility rules. */
+.dark-mode .elyx-site [class*='text-\\[\\#27a9e8\\]'],
+.dark .elyx-site [class*='text-\\[\\#27a9e8\\]'] {
+    color: #27a9e8 !important;
+}
+
+.dark-mode .elyx-site [class*='text-\\[\\#0b527e\\]'],
+.dark .elyx-site [class*='text-\\[\\#0b527e\\]'] {
+    color: #0b527e !important;
+}
+
+.dark-mode .elyx-site [class*='text-white'],
+.dark .elyx-site [class*='text-white'] {
+    color: #ffffff !important;
+}
+
+.dark-mode .elyx-site [class*='bg-\\[\\#e8f7fe\\]'],
+.dark .elyx-site [class*='bg-\\[\\#e8f7fe\\]'] {
+    background-color: #e8f7fe !important;
+}
+
+.dark-mode .elyx-site [class*='bg-\\[\\#102a43\\]'],
+.dark .elyx-site [class*='bg-\\[\\#102a43\\]'] {
+    background-color: #102a43 !important;
+}

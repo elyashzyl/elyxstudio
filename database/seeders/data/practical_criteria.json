@@ -1,0 +1,112 @@
+[
+    {
+        "id": 16,
+        "practical_id": 4,
+        "criterion_name": "Proper Use of Image Enhancement Tools",
+        "description": null,
+        "max_points": 5,
+        "order": 0,
+        "created_at": "2026-07-27 05:14:16",
+        "updated_at": "2026-07-27 05:14:16"
+    },
+    {
+        "id": 17,
+        "practical_id": 4,
+        "criterion_name": "Quality and Improvement of the Final Image",
+        "description": null,
+        "max_points": 5,
+        "order": 1,
+        "created_at": "2026-07-27 05:14:16",
+        "updated_at": "2026-07-27 05:14:16"
+    },
+    {
+        "id": 18,
+        "practical_id": 4,
+        "criterion_name": "File Management and Overall Presentation",
+        "description": null,
+        "max_points": 5,
+        "order": 2,
+        "created_at": "2026-07-27 05:14:16",
+        "updated_at": "2026-07-27 05:14:16"
+    },
+    {
+        "id": 27,
+        "practical_id": 6,
+        "criterion_name": "Correct Program Output",
+        "description": null,
+        "max_points": 5,
+        "order": 0,
+        "created_at": "2026-07-27 05:30:54",
+        "updated_at": "2026-07-27 05:30:54"
+    },
+    {
+        "id": 28,
+        "practical_id": 6,
+        "criterion_name": "Proper Use of Comments",
+        "description": null,
+        "max_points": 4,
+        "order": 1,
+        "created_at": "2026-07-27 05:30:54",
+        "updated_at": "2026-07-27 05:30:54"
+    },
+    {
+        "id": 29,
+        "practical_id": 6,
+        "criterion_name": "Coding Standards and Readability",
+        "description": null,
+        "max_points": 3,
+        "order": 2,
+        "created_at": "2026-07-27 05:30:54",
+        "updated_at": "2026-07-27 05:30:54"
+    },
+    {
+        "id": 30,
+        "practical_id": 6,
+        "criterion_name": "Program Executes Without Errors",
+        "description": null,
+        "max_points": 3,
+        "order": 3,
+        "created_at": "2026-07-27 05:30:54",
+        "updated_at": "2026-07-27 05:30:54"
+    },
+    {
+        "id": 32,
+        "practical_id": 7,
+        "criterion_name": "Correct Program Output",
+        "description": null,
+        "max_points": 15,
+        "order": 0,
+        "created_at": "2026-07-27 05:54:01",
+        "updated_at": "2026-07-27 05:54:01"
+    },
+    {
+        "id": 36,
+        "practical_id": 3,
+        "criterion_name": "Correct Identification of Appropriate Tool",
+        "description": null,
+        "max_points": 5,
+        "order": 0,
+        "created_at": "2026-07-29 04:55:57",
+        "updated_at": "2026-07-29 04:55:57"
+    },
+    {
+        "id": 37,
+        "practical_id": 3,
+        "criterion_name": "Quality of Explanation",
+        "description": null,
+        "max_points": 5,
+        "order": 1,
+        "created_at": "2026-07-29 04:55:57",
+        "updated_at": "2026-07-29 04:55:57"
+    },
+    {
+        "id": 38,
+        "practical_id": 3,
+        "criterion_name": "Completion and Accuracy",
+        "description": null,
+        "max_points": 5,
+        "order": 2,
+        "created_at": "2026-07-29 04:55:57",
+        "updated_at": "2026-07-29 04:55:57"
+    }
+]

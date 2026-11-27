@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Grade 10 Profiles</title>
+    <style>
+        @page {
+            margin: 12mm 10mm;
+            size: a4 landscape;
+        }
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 8pt;
+            color: #1f2937;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #2563eb;
+        }
+        .header h1 {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin: 0 0 4px 0;
+            letter-spacing: 0.5px;
+        }
+        .header p {
+            font-size: 8pt;
+            color: #4b5563;
+            margin: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            word-wrap: break-word;
+        }
+        th, td {
+            border: 0.5pt solid #9ca3af;
+            padding: 5px 4px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 7.5pt;
+            line-height: 1.25;
+        }
+        th {
+            background-color: #1e3a8a;
+            color: #ffffff;
+            font-weight: bold;
+            text-align: center;
+            font-size: 7pt;
+            text-transform: uppercase;
+        }
+        .row-even {
+            background-color: #f8fafc;
+        }
+        .col-no { width: 3%; text-align: center; }
+        .col-photo { width: 6%; text-align: center; }
+        .col-name { width: 13%; font-weight: bold; }
+        .col-chinese { width: 8%; text-align: center; }
+        .col-bday { width: 8%; }
+        .col-hometown { width: 8%; }
+        .col-ambition { width: 10%; }
+        .col-motto { width: 13%; font-style: italic; }
+        .col-message { width: 21%; }
+        .col-social { width: 10%; }
+        .footer {
+            margin-top: 10px;
+            font-size: 7pt;
+            color: #6b7280;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>GRADE 10 PROFILES &amp; YEARBOOK RECORDS</h1>
+        <p>Total Profiles: {{ count($profiles) }} &bull; Generated: {{ $generatedAt ?? now()->format('F j, Y g:i A') }}</p>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="col-no">#</th>
+                <th class="col-photo">PHOTO</th>
+                <th class="col-name">FULL NAME<br><span style="font-size: 6pt; font-weight: normal;">(Last Name, First Name, Middle Name)</span></th>
+                <th class="col-chinese">CHINESE NAME<br><span style="font-size: 6pt; font-weight: normal;">(Chinese Class Students)</span></th>
+                <th class="col-bday">BIRTHDAY<br><span style="font-size: 6pt; font-weight: normal;">(Month, Day, Year)</span></th>
+                <th class="col-hometown">HOMETOWN</th>
+                <th class="col-ambition">AMBITION</th>
+                <th class="col-motto">MOTTO</th>
+                <th class="col-message">MESSAGE<br><span style="font-size: 6pt; font-weight: normal;">(3-5 sentences only)</span></th>
+                <th class="col-social">SOCIAL MEDIA ACCOUNT<br><span style="font-size: 6pt; font-weight: normal;">(Optional)</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($profiles as $index => $profile)
+                <tr class="{{ $loop->even ? 'row-even' : '' }}">
+                    <td class="col-no">{{ $index + 1 }}</td>
+                    <td class="col-photo">
+                        @if ($profile->getPhotoBase64())
+                            <img src="{{ $profile->getPhotoBase64() }}" style="width: 38px; height: 38px; border-radius: 4px; object-fit: cover;" alt="Photo" />
+                        @else
+                            —
+                        @endif
+                    </td>
+                    <td class="col-name">{{ $profile->full_name }}</td>
+                    <td class="col-chinese">{{ $profile->chinese_name ?: '—' }}</td>
+                    <td class="col-bday">{{ $profile->birthday }}</td>
+                    <td class="col-hometown">{{ $profile->hometown }}</td>
+                    <td class="col-ambition">{{ $profile->ambition }}</td>
+                    <td class="col-motto">{{ $profile->motto }}</td>
+                    <td class="col-message">{{ $profile->message }}</td>
+                    <td class="col-social">{{ $profile->social_media ?: '—' }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="10" style="text-align: center; padding: 20px; color: #6b7280;">No Grade 10 profiles submitted yet.</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+
+    <div class="footer">
+        Page generated by EduPulse on {{ $generatedAt ?? now()->format('F j, Y g:i A') }}
+    </div>
+</body>
+</html>

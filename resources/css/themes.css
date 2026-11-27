@@ -1,0 +1,1218 @@
+/* ═══════════════════════════════════════════════════════════════
+   EduPulse Themes — tweakcn-inspired presets.
+   Applied as html[data-theme="<id>"], which outranks both :root and
+   .dark-mode, so a theme fully re-skins the app (landing + all pages).
+   "default" = no override (existing light/dark toggle behavior).
+   ═══════════════════════════════════════════════════════════════ */
+
+html[data-theme] {
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
+}
+
+/* ── Midnight Bloom · deep violet dusk ─────────────────────────── */
+html[data-theme='midnight-bloom'] {
+    --gl-bg: #0b0620;
+    --gl-surface: #171233;
+    --gl-surface-2: #1f1842;
+    --gl-surface-3: #2a2154;
+    --gl-border: rgba(167, 139, 250, 0.14);
+    --gl-text-primary: #f1edff;
+    --gl-text-secondary: #b7aee0;
+    --gl-text-muted: #7e76ac;
+    --gl-primary: #8b5cf6;
+    --gl-primary-glow: rgba(139, 92, 246, 0.3);
+    --gl-secondary: #38bdf8;
+    --gl-secondary-glow: rgba(56, 189, 248, 0.25);
+    --gl-accent: #f0abfc;
+    --gl-accent-glow: rgba(240, 171, 252, 0.25);
+    --gl-success: #34d399;
+    --gl-danger: #fb7185;
+    --gl-header-bg: rgba(23, 18, 51, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(23, 18, 51, 0.96),
+        rgba(11, 6, 32, 0.98)
+    );
+}
+
+/* ── Ocean Breeze · deep sea cyan ──────────────────────────────── */
+html[data-theme='ocean-breeze'] {
+    --gl-bg: #04202b;
+    --gl-surface: #07303e;
+    --gl-surface-2: #0a3d4f;
+    --gl-surface-3: #0e4c62;
+    --gl-border: rgba(34, 211, 238, 0.14);
+    --gl-text-primary: #eafbff;
+    --gl-text-secondary: #a5cfdc;
+    --gl-text-muted: #5f8b9b;
+    --gl-primary: #22d3ee;
+    --gl-primary-glow: rgba(34, 211, 238, 0.28);
+    --gl-secondary: #2dd4bf;
+    --gl-secondary-glow: rgba(45, 212, 191, 0.25);
+    --gl-accent: #fbbf24;
+    --gl-accent-glow: rgba(251, 191, 36, 0.25);
+    --gl-success: #34d399;
+    --gl-danger: #fb7185;
+    --gl-header-bg: rgba(7, 48, 62, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(7, 48, 62, 0.96),
+        rgba(4, 32, 43, 0.98)
+    );
+}
+
+/* ── Sunset Horizon · ember orange ─────────────────────────────── */
+html[data-theme='sunset-horizon'] {
+    --gl-bg: #1c0e04;
+    --gl-surface: #2c1508;
+    --gl-surface-2: #3b1d0c;
+    --gl-surface-3: #4c2610;
+    --gl-border: rgba(251, 146, 60, 0.16);
+    --gl-text-primary: #fff4e8;
+    --gl-text-secondary: #e3bfa0;
+    --gl-text-muted: #a07a5e;
+    --gl-primary: #fb923c;
+    --gl-primary-glow: rgba(251, 146, 60, 0.3);
+    --gl-secondary: #f43f5e;
+    --gl-secondary-glow: rgba(244, 63, 94, 0.25);
+    --gl-accent: #fbbf24;
+    --gl-accent-glow: rgba(251, 191, 36, 0.28);
+    --gl-success: #4ade80;
+    --gl-danger: #f87171;
+    --gl-header-bg: rgba(44, 21, 8, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(44, 21, 8, 0.96),
+        rgba(28, 14, 4, 0.98)
+    );
+}
+
+/* ── Cyberpunk · neon pink on near-black ───────────────────────── */
+html[data-theme='cyberpunk'] {
+    --gl-bg: #0a0a12;
+    --gl-surface: #12121e;
+    --gl-surface-2: #1a1a2a;
+    --gl-surface-3: #232336;
+    --gl-border: rgba(255, 45, 120, 0.18);
+    --gl-text-primary: #f4f2ff;
+    --gl-text-secondary: #b9b4d6;
+    --gl-text-muted: #6e6a8f;
+    --gl-primary: #ff2d78;
+    --gl-primary-glow: rgba(255, 45, 120, 0.32);
+    --gl-secondary: #00e5ff;
+    --gl-secondary-glow: rgba(0, 229, 255, 0.28);
+    --gl-accent: #facc15;
+    --gl-accent-glow: rgba(250, 204, 21, 0.28);
+    --gl-success: #00e676;
+    --gl-danger: #ff3b3b;
+    --gl-header-bg: rgba(18, 18, 30, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(18, 18, 30, 0.96),
+        rgba(10, 10, 18, 0.98)
+    );
+}
+
+/* ── Kodama Grove · forest green ──────────────────────────────── */
+html[data-theme='kodama-grove'] {
+    --gl-bg: #0a140e;
+    --gl-surface: #102015;
+    --gl-surface-2: #16291b;
+    --gl-surface-3: #1e3625;
+    --gl-border: rgba(74, 222, 128, 0.14);
+    --gl-text-primary: #edf7ef;
+    --gl-text-secondary: #b6d3be;
+    --gl-text-muted: #75907d;
+    --gl-primary: #4ade80;
+    --gl-primary-glow: rgba(74, 222, 128, 0.28);
+    --gl-secondary: #2dd4bf;
+    --gl-secondary-glow: rgba(45, 212, 191, 0.25);
+    --gl-accent: #fbbf24;
+    --gl-accent-glow: rgba(251, 191, 36, 0.25);
+    --gl-success: #22c55e;
+    --gl-danger: #f87171;
+    --gl-header-bg: rgba(16, 32, 21, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(16, 32, 21, 0.96),
+        rgba(10, 20, 14, 0.98)
+    );
+}
+
+/* ── Quantum Rose · wine & rose ───────────────────────────────── */
+html[data-theme='quantum-rose'] {
+    --gl-bg: #1d0a14;
+    --gl-surface: #2c1020;
+    --gl-surface-2: #3a1529;
+    --gl-surface-3: #4a1b35;
+    --gl-border: rgba(251, 113, 133, 0.16);
+    --gl-text-primary: #fff0f4;
+    --gl-text-secondary: #e4b9c6;
+    --gl-text-muted: #a4748a;
+    --gl-primary: #fb7185;
+    --gl-primary-glow: rgba(251, 113, 133, 0.3);
+    --gl-secondary: #e879f9;
+    --gl-secondary-glow: rgba(232, 121, 249, 0.25);
+    --gl-accent: #fbbf24;
+    --gl-accent-glow: rgba(251, 191, 36, 0.25);
+    --gl-success: #34d399;
+    --gl-danger: #ef4444;
+    --gl-header-bg: rgba(44, 16, 32, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(44, 16, 32, 0.96),
+        rgba(29, 10, 20, 0.98)
+    );
+}
+
+/* ── Mono · graphite grayscale ───────────────────────────────── */
+html[data-theme='mono'] {
+    --gl-bg: #101012;
+    --gl-surface: #18181b;
+    --gl-surface-2: #202024;
+    --gl-surface-3: #2a2a30;
+    --gl-border: rgba(255, 255, 255, 0.1);
+    --gl-text-primary: #fafafa;
+    --gl-text-secondary: #c9c9d1;
+    --gl-text-muted: #82828c;
+    --gl-primary: #e4e4e7;
+    --gl-primary-glow: rgba(228, 228, 231, 0.22);
+    --gl-secondary: #a1a1aa;
+    --gl-secondary-glow: rgba(161, 161, 170, 0.22);
+    --gl-accent: #facc15;
+    --gl-accent-glow: rgba(250, 204, 21, 0.25);
+    --gl-success: #4ade80;
+    --gl-danger: #f87171;
+    --gl-header-bg: rgba(24, 24, 27, 0.85);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(24, 24, 27, 0.96),
+        rgba(16, 16, 18, 0.98)
+    );
+}
+
+/* ── Vintage Paper · warm cream light ─────────────────────────── */
+html[data-theme='vintage-paper'] {
+    --gl-bg: #f4efe4;
+    --gl-surface: #fbf8f0;
+    --gl-surface-2: #ece4d2;
+    --gl-surface-3: #e0d4bc;
+    --gl-border: rgba(120, 90, 40, 0.2);
+    --gl-text-primary: #3e3428;
+    --gl-text-secondary: #77644f;
+    --gl-text-muted: #a08b6f;
+    --gl-primary: #c2410c;
+    --gl-primary-glow: rgba(194, 65, 12, 0.22);
+    --gl-secondary: #5f6c5d;
+    --gl-secondary-glow: rgba(95, 108, 93, 0.22);
+    --gl-accent: #d97706;
+    --gl-accent-glow: rgba(217, 119, 6, 0.25);
+    --gl-success: #4d7c0f;
+    --gl-danger: #b91c1c;
+    --gl-header-bg: rgba(251, 248, 240, 0.88);
+    --gl-sidebar-bg: #efe7d5;
+}
+
+/* ── Candyland · pastel pink light ────────────────────────────── */
+html[data-theme='candyland'] {
+    --gl-bg: #fff0f6;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #fce4ee;
+    --gl-surface-3: #f6cfe0;
+    --gl-border: rgba(236, 72, 153, 0.2);
+    --gl-text-primary: #4a1030;
+    --gl-text-secondary: #96587f;
+    --gl-text-muted: #b57699;
+    --gl-primary: #ec4899;
+    --gl-primary-glow: rgba(236, 72, 153, 0.28);
+    --gl-secondary: #8b5cf6;
+    --gl-secondary-glow: rgba(139, 92, 246, 0.25);
+    --gl-accent: #f59e0b;
+    --gl-accent-glow: rgba(245, 158, 11, 0.28);
+    --gl-success: #10b981;
+    --gl-danger: #ef4444;
+    --gl-header-bg: rgba(255, 255, 255, 0.88);
+    --gl-sidebar-bg: #fbdcee;
+}
+
+/* ── Claude · warm terracotta light ───────────────────────────── */
+html[data-theme='claude'] {
+    --gl-bg: #f5f0e8;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #ede6d6;
+    --gl-surface-3: #e0d4be;
+    --gl-border: rgba(180, 120, 60, 0.22);
+    --gl-text-primary: #2e2620;
+    --gl-text-secondary: #75685c;
+    --gl-text-muted: #968877;
+    --gl-primary: #d97757;
+    --gl-primary-glow: rgba(217, 119, 87, 0.28);
+    --gl-secondary: #5f6c5d;
+    --gl-secondary-glow: rgba(95, 108, 93, 0.25);
+    --gl-accent: #eab308;
+    --gl-accent-glow: rgba(234, 179, 8, 0.28);
+    --gl-success: #65a30d;
+    --gl-danger: #dc2626;
+    --gl-header-bg: rgba(255, 255, 255, 0.88);
+    --gl-sidebar-bg: #ece2cf;
+}
+
+/* ── Emerald Night · deep emerald ──────────────────────────────── */
+html[data-theme='emerald-night'] {
+    --gl-bg: #04120c;
+    --gl-surface: #0a1f14;
+    --gl-surface-2: #0f2a1a;
+    --gl-surface-3: #153522;
+    --gl-border: rgba(16, 185, 129, 0.16);
+    --gl-text-primary: #e9fbf0;
+    --gl-text-secondary: #a9d6bc;
+    --gl-text-muted: #6b937e;
+    --gl-primary: #10b981;
+    --gl-primary-glow: rgba(16, 185, 129, 0.3);
+    --gl-secondary: #14b8a6;
+    --gl-secondary-glow: rgba(20, 184, 166, 0.25);
+    --gl-accent: #fbbf24;
+    --gl-accent-glow: rgba(251, 191, 36, 0.25);
+    --gl-success: #22c55e;
+    --gl-danger: #f87171;
+    --gl-header-bg: rgba(10, 31, 20, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(10, 31, 20, 0.96),
+        rgba(4, 18, 12, 0.98)
+    );
+}
+
+/* ── Royal Grape · rich purple ─────────────────────────────────── */
+html[data-theme='royal-grape'] {
+    --gl-bg: #150a24;
+    --gl-surface: #211238;
+    --gl-surface-2: #2b1847;
+    --gl-surface-3: #372058;
+    --gl-border: rgba(168, 85, 247, 0.18);
+    --gl-text-primary: #f5edff;
+    --gl-text-secondary: #cbb6ea;
+    --gl-text-muted: #9781c2;
+    --gl-primary: #a855f7;
+    --gl-primary-glow: rgba(168, 85, 247, 0.3);
+    --gl-secondary: #ec4899;
+    --gl-secondary-glow: rgba(236, 72, 153, 0.25);
+    --gl-accent: #fbbf24;
+    --gl-accent-glow: rgba(251, 191, 36, 0.25);
+    --gl-success: #34d399;
+    --gl-danger: #fb7185;
+    --gl-header-bg: rgba(33, 18, 56, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(33, 18, 56, 0.96),
+        rgba(21, 10, 36, 0.98)
+    );
+}
+
+/* ── Crimson Dusk · dark red ───────────────────────────────────── */
+html[data-theme='crimson-dusk'] {
+    --gl-bg: #1a080a;
+    --gl-surface: #270d10;
+    --gl-surface-2: #331016;
+    --gl-surface-3: #42141c;
+    --gl-border: rgba(239, 68, 68, 0.18);
+    --gl-text-primary: #fdecec;
+    --gl-text-secondary: #e5b4b4;
+    --gl-text-muted: #a97878;
+    --gl-primary: #ef4444;
+    --gl-primary-glow: rgba(239, 68, 68, 0.3);
+    --gl-secondary: #f97316;
+    --gl-secondary-glow: rgba(249, 115, 22, 0.25);
+    --gl-accent: #fbbf24;
+    --gl-accent-glow: rgba(251, 191, 36, 0.25);
+    --gl-success: #4ade80;
+    --gl-danger: #ff2d55;
+    --gl-header-bg: rgba(39, 13, 16, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(39, 13, 16, 0.96),
+        rgba(26, 8, 10, 0.98)
+    );
+}
+
+/* ── Arctic Frost · icy blue ───────────────────────────────────── */
+html[data-theme='arctic-frost'] {
+    --gl-bg: #0a1626;
+    --gl-surface: #10233a;
+    --gl-surface-2: #16304c;
+    --gl-surface-3: #1d3e60;
+    --gl-border: rgba(125, 211, 252, 0.16);
+    --gl-text-primary: #f0f9ff;
+    --gl-text-secondary: #b9d6ec;
+    --gl-text-muted: #6e93b3;
+    --gl-primary: #7dd3fc;
+    --gl-primary-glow: rgba(125, 211, 252, 0.3);
+    --gl-secondary: #60a5fa;
+    --gl-secondary-glow: rgba(96, 165, 250, 0.25);
+    --gl-accent: #fde68a;
+    --gl-accent-glow: rgba(253, 230, 138, 0.25);
+    --gl-success: #6ee7b7;
+    --gl-danger: #fca5a5;
+    --gl-header-bg: rgba(16, 35, 58, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(16, 35, 58, 0.96),
+        rgba(10, 22, 38, 0.98)
+    );
+}
+
+/* ── Golden Hour · rich gold ───────────────────────────────────── */
+html[data-theme='golden-hour'] {
+    --gl-bg: #191004;
+    --gl-surface: #241804;
+    --gl-surface-2: #312006;
+    --gl-surface-3: #3f2a08;
+    --gl-border: rgba(251, 191, 36, 0.18);
+    --gl-text-primary: #fffaeb;
+    --gl-text-secondary: #ead3a6;
+    --gl-text-muted: #a98f61;
+    --gl-primary: #f59e0b;
+    --gl-primary-glow: rgba(245, 158, 11, 0.3);
+    --gl-secondary: #fb923c;
+    --gl-secondary-glow: rgba(251, 146, 60, 0.25);
+    --gl-accent: #fde047;
+    --gl-accent-glow: rgba(253, 224, 71, 0.28);
+    --gl-success: #a3e635;
+    --gl-danger: #f87171;
+    --gl-header-bg: rgba(36, 24, 4, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(36, 24, 4, 0.96),
+        rgba(25, 16, 4, 0.98)
+    );
+}
+
+/* ── Lavender Mist · soft violet ───────────────────────────────── */
+html[data-theme='lavender-mist'] {
+    --gl-bg: #12101f;
+    --gl-surface: #1b1830;
+    --gl-surface-2: #242040;
+    --gl-surface-3: #2e2952;
+    --gl-border: rgba(196, 181, 253, 0.16);
+    --gl-text-primary: #f2effc;
+    --gl-text-secondary: #c6bdea;
+    --gl-text-muted: #8f86bb;
+    --gl-primary: #a78bfa;
+    --gl-primary-glow: rgba(167, 139, 250, 0.3);
+    --gl-secondary: #f0abfc;
+    --gl-secondary-glow: rgba(240, 171, 252, 0.25);
+    --gl-accent: #fde68a;
+    --gl-accent-glow: rgba(253, 230, 138, 0.25);
+    --gl-success: #6ee7b7;
+    --gl-danger: #fda4af;
+    --gl-header-bg: rgba(27, 24, 48, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(27, 24, 48, 0.96),
+        rgba(18, 16, 31, 0.98)
+    );
+}
+
+/* ── Teal Abyss · deep teal ────────────────────────────────────── */
+html[data-theme='teal-abyss'] {
+    --gl-bg: #02181c;
+    --gl-surface: #062a32;
+    --gl-surface-2: #093943;
+    --gl-surface-3: #0d4a56;
+    --gl-border: rgba(45, 212, 191, 0.16);
+    --gl-text-primary: #e6fffb;
+    --gl-text-secondary: #a7d8d2;
+    --gl-text-muted: #5e8f89;
+    --gl-primary: #14b8a6;
+    --gl-primary-glow: rgba(20, 184, 166, 0.3);
+    --gl-secondary: #22d3ee;
+    --gl-secondary-glow: rgba(34, 211, 238, 0.25);
+    --gl-accent: #fcd34d;
+    --gl-accent-glow: rgba(252, 211, 77, 0.25);
+    --gl-success: #34d399;
+    --gl-danger: #fb7185;
+    --gl-header-bg: rgba(6, 42, 50, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(6, 42, 50, 0.96),
+        rgba(2, 24, 28, 0.98)
+    );
+}
+
+/* ── Neon Lime · electric green ────────────────────────────────── */
+html[data-theme='neon-lime'] {
+    --gl-bg: #0c1304;
+    --gl-surface: #141f08;
+    --gl-surface-2: #1c2b0c;
+    --gl-surface-3: #263812;
+    --gl-border: rgba(163, 230, 53, 0.18);
+    --gl-text-primary: #f7fee7;
+    --gl-text-secondary: #d3e8a8;
+    --gl-text-muted: #8fa065;
+    --gl-primary: #a3e635;
+    --gl-primary-glow: rgba(163, 230, 53, 0.3);
+    --gl-secondary: #4ade80;
+    --gl-secondary-glow: rgba(74, 222, 128, 0.25);
+    --gl-accent: #fde047;
+    --gl-accent-glow: rgba(253, 224, 71, 0.28);
+    --gl-success: #84cc16;
+    --gl-danger: #fb7185;
+    --gl-header-bg: rgba(20, 31, 8, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(20, 31, 8, 0.96),
+        rgba(12, 19, 4, 0.98)
+    );
+}
+
+/* ── Copper Rust · burnt copper ────────────────────────────────── */
+html[data-theme='copper-rust'] {
+    --gl-bg: #170c06;
+    --gl-surface: #241209;
+    --gl-surface-2: #30170c;
+    --gl-surface-3: #3e1e10;
+    --gl-border: rgba(234, 88, 12, 0.18);
+    --gl-text-primary: #fff1e8;
+    --gl-text-secondary: #e4bc9f;
+    --gl-text-muted: #a67e5f;
+    --gl-primary: #ea580c;
+    --gl-primary-glow: rgba(234, 88, 12, 0.3);
+    --gl-secondary: #f59e0b;
+    --gl-secondary-glow: rgba(245, 158, 11, 0.25);
+    --gl-accent: #fcd34d;
+    --gl-accent-glow: rgba(252, 211, 77, 0.25);
+    --gl-success: #84cc16;
+    --gl-danger: #ef4444;
+    --gl-header-bg: rgba(36, 18, 9, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(36, 18, 9, 0.96),
+        rgba(23, 12, 6, 0.98)
+    );
+}
+
+/* ── Ice Violet · pale indigo ──────────────────────────────────── */
+html[data-theme='ice-violet'] {
+    --gl-bg: #0e0d1a;
+    --gl-surface: #171628;
+    --gl-surface-2: #1f1e36;
+    --gl-surface-3: #292845;
+    --gl-border: rgba(129, 140, 248, 0.18);
+    --gl-text-primary: #eeefff;
+    --gl-text-secondary: #bec2ea;
+    --gl-text-muted: #7f84b5;
+    --gl-primary: #818cf8;
+    --gl-primary-glow: rgba(129, 140, 248, 0.3);
+    --gl-secondary: #c084fc;
+    --gl-secondary-glow: rgba(192, 132, 252, 0.25);
+    --gl-accent: #fde68a;
+    --gl-accent-glow: rgba(253, 230, 138, 0.25);
+    --gl-success: #6ee7b7;
+    --gl-danger: #fda4af;
+    --gl-header-bg: rgba(23, 22, 40, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(23, 22, 40, 0.96),
+        rgba(14, 13, 26, 0.98)
+    );
+}
+
+/* ── Blood Moon · dark crimson ─────────────────────────────────── */
+html[data-theme='blood-moon'] {
+    --gl-bg: #120607;
+    --gl-surface: #1d0a0c;
+    --gl-surface-2: #280e10;
+    --gl-surface-3: #331215;
+    --gl-border: rgba(244, 63, 94, 0.2);
+    --gl-text-primary: #fdebeb;
+    --gl-text-secondary: #e3afaf;
+    --gl-text-muted: #9e6b6b;
+    --gl-primary: #f43f5e;
+    --gl-primary-glow: rgba(244, 63, 94, 0.3);
+    --gl-secondary: #fb923c;
+    --gl-secondary-glow: rgba(251, 146, 60, 0.25);
+    --gl-accent: #fde047;
+    --gl-accent-glow: rgba(253, 224, 71, 0.25);
+    --gl-success: #4ade80;
+    --gl-danger: #991b1b;
+    --gl-header-bg: rgba(29, 10, 12, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(29, 10, 12, 0.96),
+        rgba(18, 6, 7, 0.98)
+    );
+}
+
+/* ── Deep Space · navy black ───────────────────────────────────── */
+html[data-theme='deep-space'] {
+    --gl-bg: #050914;
+    --gl-surface: #0a1224;
+    --gl-surface-2: #0f1a32;
+    --gl-surface-3: #142242;
+    --gl-border: rgba(59, 130, 246, 0.18);
+    --gl-text-primary: #eaf1ff;
+    --gl-text-secondary: #aec4e8;
+    --gl-text-muted: #647ea6;
+    --gl-primary: #3b82f6;
+    --gl-primary-glow: rgba(59, 130, 246, 0.3);
+    --gl-secondary: #6366f1;
+    --gl-secondary-glow: rgba(99, 102, 241, 0.25);
+    --gl-accent: #22d3ee;
+    --gl-accent-glow: rgba(34, 211, 238, 0.25);
+    --gl-success: #34d399;
+    --gl-danger: #f87171;
+    --gl-header-bg: rgba(10, 18, 36, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(10, 18, 36, 0.96),
+        rgba(5, 9, 20, 0.98)
+    );
+}
+
+/* ── Matcha · green tea ────────────────────────────────────────── */
+html[data-theme='matcha'] {
+    --gl-bg: #0d120a;
+    --gl-surface: #151d10;
+    --gl-surface-2: #1c2615;
+    --gl-surface-3: #25311c;
+    --gl-border: rgba(132, 204, 22, 0.16);
+    --gl-text-primary: #f2f7e8;
+    --gl-text-secondary: #cbd8b4;
+    --gl-text-muted: #8b9573;
+    --gl-primary: #84cc16;
+    --gl-primary-glow: rgba(132, 204, 22, 0.3);
+    --gl-secondary: #4ade80;
+    --gl-secondary-glow: rgba(74, 222, 128, 0.25);
+    --gl-accent: #fde047;
+    --gl-accent-glow: rgba(253, 224, 71, 0.25);
+    --gl-success: #65a30d;
+    --gl-danger: #f87171;
+    --gl-header-bg: rgba(21, 29, 16, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(21, 29, 16, 0.96),
+        rgba(13, 18, 10, 0.98)
+    );
+}
+
+/* ── Plum Wine · deep magenta ──────────────────────────────────── */
+html[data-theme='plum-wine'] {
+    --gl-bg: #160a17;
+    --gl-surface: #231026;
+    --gl-surface-2: #2e1533;
+    --gl-surface-3: #3b1b42;
+    --gl-border: rgba(192, 38, 211, 0.18);
+    --gl-text-primary: #faedfc;
+    --gl-text-secondary: #d9b6e3;
+    --gl-text-muted: #9c7aa8;
+    --gl-primary: #c026d3;
+    --gl-primary-glow: rgba(192, 38, 211, 0.3);
+    --gl-secondary: #e879f9;
+    --gl-secondary-glow: rgba(232, 121, 249, 0.25);
+    --gl-accent: #fbbf24;
+    --gl-accent-glow: rgba(251, 191, 36, 0.25);
+    --gl-success: #34d399;
+    --gl-danger: #fb7185;
+    --gl-header-bg: rgba(35, 16, 38, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(35, 16, 38, 0.96),
+        rgba(22, 10, 23, 0.98)
+    );
+}
+
+/* ── Steel Blue · slate steel ──────────────────────────────────── */
+html[data-theme='steel-blue'] {
+    --gl-bg: #0b1220;
+    --gl-surface: #111c30;
+    --gl-surface-2: #17253e;
+    --gl-surface-3: #1e304e;
+    --gl-border: rgba(148, 163, 184, 0.2);
+    --gl-text-primary: #f1f5f9;
+    --gl-text-secondary: #b6c2d2;
+    --gl-text-muted: #7688a0;
+    --gl-primary: #cbd5e1;
+    --gl-primary-glow: rgba(203, 213, 225, 0.22);
+    --gl-secondary: #64748b;
+    --gl-secondary-glow: rgba(100, 116, 139, 0.25);
+    --gl-accent: #f59e0b;
+    --gl-accent-glow: rgba(245, 158, 11, 0.25);
+    --gl-success: #4ade80;
+    --gl-danger: #f87171;
+    --gl-header-bg: rgba(17, 28, 48, 0.85);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(17, 28, 48, 0.96),
+        rgba(11, 18, 32, 0.98)
+    );
+}
+
+/* ── Ultraviolet · vivid violet ────────────────────────────────── */
+html[data-theme='ultraviolet'] {
+    --gl-bg: #0d0518;
+    --gl-surface: #180a2e;
+    --gl-surface-2: #200d3e;
+    --gl-surface-3: #2a1250;
+    --gl-border: rgba(139, 92, 246, 0.22);
+    --gl-text-primary: #f3edff;
+    --gl-text-secondary: #c9b8f2;
+    --gl-text-muted: #8778c2;
+    --gl-primary: #7c3aed;
+    --gl-primary-glow: rgba(124, 58, 237, 0.32);
+    --gl-secondary: #d946ef;
+    --gl-secondary-glow: rgba(217, 70, 239, 0.28);
+    --gl-accent: #f0abfc;
+    --gl-accent-glow: rgba(240, 171, 252, 0.28);
+    --gl-success: #34d399;
+    --gl-danger: #fb7185;
+    --gl-header-bg: rgba(24, 10, 46, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(24, 10, 46, 0.96),
+        rgba(13, 5, 24, 0.98)
+    );
+}
+
+/* ── Ember Glow · red orange ───────────────────────────────────── */
+html[data-theme='ember-glow'] {
+    --gl-bg: #170703;
+    --gl-surface: #240b05;
+    --gl-surface-2: #300e07;
+    --gl-surface-3: #3e120a;
+    --gl-border: rgba(249, 115, 22, 0.2);
+    --gl-text-primary: #fff3e8;
+    --gl-text-secondary: #edc29d;
+    --gl-text-muted: #a97e58;
+    --gl-primary: #f97316;
+    --gl-primary-glow: rgba(249, 115, 22, 0.3);
+    --gl-secondary: #ef4444;
+    --gl-secondary-glow: rgba(239, 68, 68, 0.25);
+    --gl-accent: #fde047;
+    --gl-accent-glow: rgba(253, 224, 71, 0.28);
+    --gl-success: #a3e635;
+    --gl-danger: #dc2626;
+    --gl-header-bg: rgba(36, 11, 5, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(36, 11, 5, 0.96),
+        rgba(23, 7, 3, 0.98)
+    );
+}
+
+/* ── Pine Forest · deep pine ───────────────────────────────────── */
+html[data-theme='pine-forest'] {
+    --gl-bg: #071210;
+    --gl-surface: #0c1f1b;
+    --gl-surface-2: #122924;
+    --gl-surface-3: #18352f;
+    --gl-border: rgba(45, 212, 191, 0.16);
+    --gl-text-primary: #e9f7f2;
+    --gl-text-secondary: #afd2c9;
+    --gl-text-muted: #6e938a;
+    --gl-primary: #2dd4bf;
+    --gl-primary-glow: rgba(45, 212, 191, 0.3);
+    --gl-secondary: #34d399;
+    --gl-secondary-glow: rgba(52, 211, 153, 0.25);
+    --gl-accent: #fde68a;
+    --gl-accent-glow: rgba(253, 230, 138, 0.25);
+    --gl-success: #10b981;
+    --gl-danger: #f87171;
+    --gl-header-bg: rgba(12, 31, 27, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(12, 31, 27, 0.96),
+        rgba(7, 18, 16, 0.98)
+    );
+}
+
+/* ── Galaxy Pink · magenta nebula ──────────────────────────────── */
+html[data-theme='galaxy-pink'] {
+    --gl-bg: #130818;
+    --gl-surface: #1f0d28;
+    --gl-surface-2: #2a1236;
+    --gl-surface-3: #371846;
+    --gl-border: rgba(232, 121, 249, 0.2);
+    --gl-text-primary: #fbeffd;
+    --gl-text-secondary: #e3b8ec;
+    --gl-text-muted: #a37fb0;
+    --gl-primary: #d946ef;
+    --gl-primary-glow: rgba(217, 70, 239, 0.3);
+    --gl-secondary: #8b5cf6;
+    --gl-secondary-glow: rgba(139, 92, 246, 0.25);
+    --gl-accent: #fde047;
+    --gl-accent-glow: rgba(253, 224, 71, 0.28);
+    --gl-success: #34d399;
+    --gl-danger: #fb7185;
+    --gl-header-bg: rgba(31, 13, 40, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(31, 13, 40, 0.96),
+        rgba(19, 8, 24, 0.98)
+    );
+}
+
+/* ── Slate Storm · storm gray ──────────────────────────────────── */
+html[data-theme='slate-storm'] {
+    --gl-bg: #0c0f16;
+    --gl-surface: #141922;
+    --gl-surface-2: #1b222e;
+    --gl-surface-3: #232c3b;
+    --gl-border: rgba(148, 163, 184, 0.18);
+    --gl-text-primary: #f1f5f9;
+    --gl-text-secondary: #b8c2d1;
+    --gl-text-muted: #7c8a9e;
+    --gl-primary: #60a5fa;
+    --gl-primary-glow: rgba(96, 165, 250, 0.3);
+    --gl-secondary: #94a3b8;
+    --gl-secondary-glow: rgba(148, 163, 184, 0.25);
+    --gl-accent: #fbbf24;
+    --gl-accent-glow: rgba(251, 191, 36, 0.25);
+    --gl-success: #34d399;
+    --gl-danger: #f87171;
+    --gl-header-bg: rgba(20, 25, 34, 0.85);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(20, 25, 34, 0.96),
+        rgba(12, 15, 22, 0.98)
+    );
+}
+
+/* ── Turquoise Lagoon · bright lagoon ──────────────────────────── */
+html[data-theme='turquoise-lagoon'] {
+    --gl-bg: #03211f;
+    --gl-surface: #07332f;
+    --gl-surface-2: #0a443e;
+    --gl-surface-3: #0e564e;
+    --gl-border: rgba(45, 212, 191, 0.2);
+    --gl-text-primary: #e6fffa;
+    --gl-text-secondary: #a9dcd4;
+    --gl-text-muted: #5f9189;
+    --gl-primary: #2dd4bf;
+    --gl-primary-glow: rgba(45, 212, 191, 0.32);
+    --gl-secondary: #22d3ee;
+    --gl-secondary-glow: rgba(34, 211, 238, 0.28);
+    --gl-accent: #fde047;
+    --gl-accent-glow: rgba(253, 224, 71, 0.28);
+    --gl-success: #34d399;
+    --gl-danger: #fb7185;
+    --gl-header-bg: rgba(7, 51, 47, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(7, 51, 47, 0.96),
+        rgba(3, 33, 31, 0.98)
+    );
+}
+
+/* ── Magenta Pulse · hot magenta ───────────────────────────────── */
+html[data-theme='magenta-pulse'] {
+    --gl-bg: #190414;
+    --gl-surface: #270820;
+    --gl-surface-2: #350b2c;
+    --gl-surface-3: #440f38;
+    --gl-border: rgba(236, 72, 153, 0.22);
+    --gl-text-primary: #fdebf6;
+    --gl-text-secondary: #efb9d6;
+    --gl-text-muted: #b27a9c;
+    --gl-primary: #ec4899;
+    --gl-primary-glow: rgba(236, 72, 153, 0.32);
+    --gl-secondary: #f0abfc;
+    --gl-secondary-glow: rgba(240, 171, 252, 0.28);
+    --gl-accent: #fde047;
+    --gl-accent-glow: rgba(253, 224, 71, 0.28);
+    --gl-success: #34d399;
+    --gl-danger: #ef4444;
+    --gl-header-bg: rgba(39, 8, 32, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(39, 8, 32, 0.96),
+        rgba(25, 4, 20, 0.98)
+    );
+}
+
+/* ── Bronze Age · aged bronze ──────────────────────────────────── */
+html[data-theme='bronze-age'] {
+    --gl-bg: #120c05;
+    --gl-surface: #1d130a;
+    --gl-surface-2: #281a0e;
+    --gl-surface-3: #332214;
+    --gl-border: rgba(217, 119, 6, 0.24);
+    --gl-text-primary: #f7efe2;
+    --gl-text-secondary: #d8be98;
+    --gl-text-muted: #99805e;
+    --gl-primary: #d97706;
+    --gl-primary-glow: rgba(217, 119, 6, 0.3);
+    --gl-secondary: #a16207;
+    --gl-secondary-glow: rgba(161, 98, 7, 0.28);
+    --gl-accent: #fbbf24;
+    --gl-accent-glow: rgba(251, 191, 36, 0.28);
+    --gl-success: #84cc16;
+    --gl-danger: #ef4444;
+    --gl-header-bg: rgba(29, 19, 10, 0.85);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(29, 19, 10, 0.96),
+        rgba(18, 12, 5, 0.98)
+    );
+}
+
+/* ── Night Owl · github dusk ───────────────────────────────────── */
+html[data-theme='night-owl'] {
+    --gl-bg: #0d1117;
+    --gl-surface: #161b22;
+    --gl-surface-2: #1c232d;
+    --gl-surface-3: #242d3a;
+    --gl-border: rgba(139, 148, 158, 0.2);
+    --gl-text-primary: #e6edf3;
+    --gl-text-secondary: #afb8c1;
+    --gl-text-muted: #6e7681;
+    --gl-primary: #58a6ff;
+    --gl-primary-glow: rgba(88, 166, 255, 0.3);
+    --gl-secondary: #bc8cff;
+    --gl-secondary-glow: rgba(188, 140, 255, 0.25);
+    --gl-accent: #d29922;
+    --gl-accent-glow: rgba(210, 153, 34, 0.28);
+    --gl-success: #3fb950;
+    --gl-danger: #f85149;
+    --gl-header-bg: rgba(22, 27, 34, 0.88);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(22, 27, 34, 0.98),
+        rgba(13, 17, 23, 1)
+    );
+}
+
+/* ── Sakura Night · cherry blossom ─────────────────────────────── */
+html[data-theme='sakura-night'] {
+    --gl-bg: #170d16;
+    --gl-surface: #241222;
+    --gl-surface-2: #301830;
+    --gl-surface-3: #3e1f3e;
+    --gl-border: rgba(244, 114, 182, 0.2);
+    --gl-text-primary: #fcebf4;
+    --gl-text-secondary: #e4b7d2;
+    --gl-text-muted: #a37e99;
+    --gl-primary: #f472b6;
+    --gl-primary-glow: rgba(244, 114, 182, 0.3);
+    --gl-secondary: #c084fc;
+    --gl-secondary-glow: rgba(192, 132, 252, 0.25);
+    --gl-accent: #fde68a;
+    --gl-accent-glow: rgba(253, 230, 138, 0.25);
+    --gl-success: #34d399;
+    --gl-danger: #fb7185;
+    --gl-header-bg: rgba(36, 18, 34, 0.82);
+    --gl-sidebar-bg: linear-gradient(
+        180deg,
+        rgba(36, 18, 34, 0.96),
+        rgba(23, 13, 22, 0.98)
+    );
+}
+
+/* ── Mint Fresh · cool mint light ──────────────────────────────── */
+html[data-theme='mint-fresh'] {
+    --gl-bg: #effaf3;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #ddf2e5;
+    --gl-surface-3: #c6e8d2;
+    --gl-border: rgba(16, 185, 129, 0.24);
+    --gl-text-primary: #0b3020;
+    --gl-text-secondary: #3e6b55;
+    --gl-text-muted: #6d917b;
+    --gl-primary: #059669;
+    --gl-primary-glow: rgba(5, 150, 105, 0.25);
+    --gl-secondary: #0d9488;
+    --gl-secondary-glow: rgba(13, 148, 136, 0.22);
+    --gl-accent: #d97706;
+    --gl-accent-glow: rgba(217, 119, 6, 0.25);
+    --gl-success: #16a34a;
+    --gl-danger: #dc2626;
+    --gl-header-bg: rgba(255, 255, 255, 0.9);
+    --gl-sidebar-bg: #d9efe1;
+}
+
+/* ── Sky Morning · clear sky light ─────────────────────────────── */
+html[data-theme='sky-morning'] {
+    --gl-bg: #eff6ff;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #dbeafe;
+    --gl-surface-3: #bfdbfe;
+    --gl-border: rgba(59, 130, 246, 0.24);
+    --gl-text-primary: #172554;
+    --gl-text-secondary: #3b5a8a;
+    --gl-text-muted: #7c96b8;
+    --gl-primary: #2563eb;
+    --gl-primary-glow: rgba(37, 99, 235, 0.25);
+    --gl-secondary: #0284c7;
+    --gl-secondary-glow: rgba(2, 132, 199, 0.22);
+    --gl-accent: #d97706;
+    --gl-accent-glow: rgba(217, 119, 6, 0.25);
+    --gl-success: #16a34a;
+    --gl-danger: #dc2626;
+    --gl-header-bg: rgba(255, 255, 255, 0.9);
+    --gl-sidebar-bg: #d7e6fc;
+}
+
+/* ── Lemon Cream · citrus light ────────────────────────────────── */
+html[data-theme='lemon-cream'] {
+    --gl-bg: #fffbeb;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #fef3c7;
+    --gl-surface-3: #fde68a;
+    --gl-border: rgba(217, 119, 6, 0.28);
+    --gl-text-primary: #451a03;
+    --gl-text-secondary: #8a6d1f;
+    --gl-text-muted: #9b8444;
+    --gl-primary: #d97706;
+    --gl-primary-glow: rgba(217, 119, 6, 0.28);
+    --gl-secondary: #ca8a04;
+    --gl-secondary-glow: rgba(202, 138, 4, 0.25);
+    --gl-accent: #ea580c;
+    --gl-accent-glow: rgba(234, 88, 12, 0.25);
+    --gl-success: #65a30d;
+    --gl-danger: #dc2626;
+    --gl-header-bg: rgba(255, 255, 255, 0.9);
+    --gl-sidebar-bg: #fbeecb;
+}
+
+/* ── Peach Sorbet · juicy peach light ──────────────────────────── */
+html[data-theme='peach-sorbet'] {
+    --gl-bg: #fff1e8;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #ffe0cc;
+    --gl-surface-3: #ffc9a8;
+    --gl-border: rgba(249, 115, 22, 0.24);
+    --gl-text-primary: #431407;
+    --gl-text-secondary: #96603f;
+    --gl-text-muted: #b77f50;
+    --gl-primary: #ea580c;
+    --gl-primary-glow: rgba(234, 88, 12, 0.28);
+    --gl-secondary: #db2777;
+    --gl-secondary-glow: rgba(219, 39, 119, 0.25);
+    --gl-accent: #ca8a04;
+    --gl-accent-glow: rgba(202, 138, 4, 0.25);
+    --gl-success: #16a34a;
+    --gl-danger: #dc2626;
+    --gl-header-bg: rgba(255, 255, 255, 0.9);
+    --gl-sidebar-bg: #ffddc6;
+}
+
+/* ── Lilac Field · lavender light ──────────────────────────────── */
+html[data-theme='lilac-field'] {
+    --gl-bg: #f5f0ff;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #e9e0fd;
+    --gl-surface-3: #d6c6fa;
+    --gl-border: rgba(139, 92, 246, 0.24);
+    --gl-text-primary: #2e1065;
+    --gl-text-secondary: #6b5b95;
+    --gl-text-muted: #937fbd;
+    --gl-primary: #7c3aed;
+    --gl-primary-glow: rgba(124, 58, 237, 0.25);
+    --gl-secondary: #db2777;
+    --gl-secondary-glow: rgba(219, 39, 119, 0.22);
+    --gl-accent: #d97706;
+    --gl-accent-glow: rgba(217, 119, 6, 0.25);
+    --gl-success: #16a34a;
+    --gl-danger: #dc2626;
+    --gl-header-bg: rgba(255, 255, 255, 0.9);
+    --gl-sidebar-bg: #e5dbfc;
+}
+
+/* ── Rose Garden · soft rose light ─────────────────────────────── */
+html[data-theme='rose-garden'] {
+    --gl-bg: #fff1f2;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #ffe0e4;
+    --gl-surface-3: #ffc9d1;
+    --gl-border: rgba(244, 63, 94, 0.22);
+    --gl-text-primary: #4c0519;
+    --gl-text-secondary: #96505f;
+    --gl-text-muted: #ba7683;
+    --gl-primary: #e11d48;
+    --gl-primary-glow: rgba(225, 29, 72, 0.25);
+    --gl-secondary: #db2777;
+    --gl-secondary-glow: rgba(219, 39, 119, 0.22);
+    --gl-accent: #d97706;
+    --gl-accent-glow: rgba(217, 119, 6, 0.25);
+    --gl-success: #16a34a;
+    --gl-danger: #b91c1c;
+    --gl-header-bg: rgba(255, 255, 255, 0.9);
+    --gl-sidebar-bg: #ffdde2;
+}
+
+/* ── Oatmeal · warm oat light ──────────────────────────────────── */
+html[data-theme='oatmeal'] {
+    --gl-bg: #f3efe6;
+    --gl-surface: #fbf9f3;
+    --gl-surface-2: #e7dfce;
+    --gl-surface-3: #d6c9b0;
+    --gl-border: rgba(120, 100, 60, 0.24);
+    --gl-text-primary: #3f382c;
+    --gl-text-secondary: #766b58;
+    --gl-text-muted: #918267;
+    --gl-primary: #a16207;
+    --gl-primary-glow: rgba(161, 98, 7, 0.25);
+    --gl-secondary: #6b7c5e;
+    --gl-secondary-glow: rgba(107, 124, 94, 0.22);
+    --gl-accent: #c2410c;
+    --gl-accent-glow: rgba(194, 65, 12, 0.25);
+    --gl-success: #4d7c0f;
+    --gl-danger: #b91c1c;
+    --gl-header-bg: rgba(251, 249, 243, 0.9);
+    --gl-sidebar-bg: #e8dfca;
+}
+
+/* ── Seafoam · ocean foam light ────────────────────────────────── */
+html[data-theme='seafoam'] {
+    --gl-bg: #ecfdf5;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #d0f5e2;
+    --gl-surface-3: #a9e9cb;
+    --gl-border: rgba(20, 184, 166, 0.24);
+    --gl-text-primary: #042f2e;
+    --gl-text-secondary: #2f6b62;
+    --gl-text-muted: #5f8f84;
+    --gl-primary: #0d9488;
+    --gl-primary-glow: rgba(13, 148, 136, 0.25);
+    --gl-secondary: #0284c7;
+    --gl-secondary-glow: rgba(2, 132, 199, 0.22);
+    --gl-accent: #d97706;
+    --gl-accent-glow: rgba(217, 119, 6, 0.25);
+    --gl-success: #16a34a;
+    --gl-danger: #dc2626;
+    --gl-header-bg: rgba(255, 255, 255, 0.9);
+    --gl-sidebar-bg: #cdf3e0;
+}
+
+/* ── Buttercream · creamy yellow light ─────────────────────────── */
+html[data-theme='buttercream'] {
+    --gl-bg: #fffdf0;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #f9eecb;
+    --gl-surface-3: #f3e2a9;
+    --gl-border: rgba(202, 138, 4, 0.28);
+    --gl-text-primary: #422006;
+    --gl-text-secondary: #85703f;
+    --gl-text-muted: #9b8750;
+    --gl-primary: #ca8a04;
+    --gl-primary-glow: rgba(202, 138, 4, 0.28);
+    --gl-secondary: #a16207;
+    --gl-secondary-glow: rgba(161, 98, 7, 0.25);
+    --gl-accent: #ea580c;
+    --gl-accent-glow: rgba(234, 88, 12, 0.25);
+    --gl-success: #65a30d;
+    --gl-danger: #dc2626;
+    --gl-header-bg: rgba(255, 255, 255, 0.9);
+    --gl-sidebar-bg: #f7ecc8;
+}
+
+/* ── Periwinkle · soft indigo light ────────────────────────────── */
+html[data-theme='periwinkle'] {
+    --gl-bg: #eef2ff;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #e0e7ff;
+    --gl-surface-3: #c7d2fe;
+    --gl-border: rgba(99, 102, 241, 0.24);
+    --gl-text-primary: #1e1b4b;
+    --gl-text-secondary: #4e4e9c;
+    --gl-text-muted: #8b8dc2;
+    --gl-primary: #4f46e5;
+    --gl-primary-glow: rgba(79, 70, 229, 0.25);
+    --gl-secondary: #0ea5e9;
+    --gl-secondary-glow: rgba(14, 165, 233, 0.22);
+    --gl-accent: #d97706;
+    --gl-accent-glow: rgba(217, 119, 6, 0.25);
+    --gl-success: #16a34a;
+    --gl-danger: #dc2626;
+    --gl-header-bg: rgba(255, 255, 255, 0.9);
+    --gl-sidebar-bg: #dce4fd;
+}
+
+/* ── Terracotta Sun · baked clay light ─────────────────────────── */
+html[data-theme='terracotta-sun'] {
+    --gl-bg: #fff4ec;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #f8dcc8;
+    --gl-surface-3: #f2c4a2;
+    --gl-border: rgba(194, 65, 12, 0.24);
+    --gl-text-primary: #431407;
+    --gl-text-secondary: #8a5a3b;
+    --gl-text-muted: #b77f50;
+    --gl-primary: #c2410c;
+    --gl-primary-glow: rgba(194, 65, 12, 0.25);
+    --gl-secondary: #b45309;
+    --gl-secondary-glow: rgba(180, 83, 9, 0.22);
+    --gl-accent: #ca8a04;
+    --gl-accent-glow: rgba(202, 138, 4, 0.25);
+    --gl-success: #4d7c0f;
+    --gl-danger: #b91c1c;
+    --gl-header-bg: rgba(255, 255, 255, 0.9);
+    --gl-sidebar-bg: #f6d8c1;
+}
+
+/* ── Sage Meadow · soft sage light ─────────────────────────────── */
+html[data-theme='sage-meadow'] {
+    --gl-bg: #f0f5ec;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #dde8d2;
+    --gl-surface-3: #c4d6b2;
+    --gl-border: rgba(101, 163, 13, 0.24);
+    --gl-text-primary: #1a2e05;
+    --gl-text-secondary: #4a6136;
+    --gl-text-muted: #78905c;
+    --gl-primary: #65a30d;
+    --gl-primary-glow: rgba(101, 163, 13, 0.25);
+    --gl-secondary: #0d9488;
+    --gl-secondary-glow: rgba(13, 148, 136, 0.22);
+    --gl-accent: #ca8a04;
+    --gl-accent-glow: rgba(202, 138, 4, 0.25);
+    --gl-success: #16a34a;
+    --gl-danger: #dc2626;
+    --gl-header-bg: rgba(255, 255, 255, 0.9);
+    --gl-sidebar-bg: #d9e6ce;
+}
+
+/* ── Powder Blue · baby blue light ─────────────────────────────── */
+html[data-theme='powder-blue'] {
+    --gl-bg: #f0f9ff;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #e0f2fe;
+    --gl-surface-3: #bae6fd;
+    --gl-border: rgba(14, 165, 233, 0.24);
+    --gl-text-primary: #0c4a6e;
+    --gl-text-secondary: #356a8c;
+    --gl-text-muted: #588ead;
+    --gl-primary: #0284c7;
+    --gl-primary-glow: rgba(2, 132, 199, 0.25);
+    --gl-secondary: #4f46e5;
+    --gl-secondary-glow: rgba(79, 70, 229, 0.22);
+    --gl-accent: #d97706;
+    --gl-accent-glow: rgba(217, 119, 6, 0.25);
+    --gl-success: #16a34a;
+    --gl-danger: #dc2626;
+    --gl-header-bg: rgba(255, 255, 255, 0.9);
+    --gl-sidebar-bg: #dceefb;
+}
+
+/* ── Blush · soft petal light ──────────────────────────────────── */
+html[data-theme='blush'] {
+    --gl-bg: #fdf2f4;
+    --gl-surface: #ffffff;
+    --gl-surface-2: #f9e0e6;
+    --gl-surface-3: #f3cbd6;
+    --gl-border: rgba(190, 100, 120, 0.22);
+    --gl-text-primary: #471c28;
+    --gl-text-secondary: #8a5563;
+    --gl-text-muted: #b17c8b;
+    --gl-primary: #b4436b;
+    --gl-primary-glow: rgba(180, 67, 107, 0.25);
+    --gl-secondary: #8b5cf6;
+    --gl-secondary-glow: rgba(139, 92, 246, 0.22);
+    --gl-accent: #d97706;
+    --gl-accent-glow: rgba(217, 119, 6, 0.25);
+    --gl-success: #16a34a;
+    --gl-danger: #b91c1c;
+    --gl-header-bg: rgba(255, 255, 255, 0.9);
+    --gl-sidebar-bg: #f7dde4;
+}

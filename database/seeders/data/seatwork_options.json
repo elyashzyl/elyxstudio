@@ -1,0 +1,92 @@
+[
+    {
+        "id": 61,
+        "question_id": 61,
+        "option_text": "To initialize or give starting values to an object's attributes.",
+        "is_correct": 1,
+        "order": 0,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    },
+    {
+        "id": 62,
+        "question_id": 62,
+        "option_text": "Inside a class.",
+        "is_correct": 1,
+        "order": 0,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    },
+    {
+        "id": 63,
+        "question_id": 63,
+        "option_text": "It refers to the current object.",
+        "is_correct": 1,
+        "order": 0,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    },
+    {
+        "id": 64,
+        "question_id": 64,
+        "option_text": "They receive information or values when an object is created.",
+        "is_correct": 1,
+        "order": 0,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    },
+    {
+        "id": 65,
+        "question_id": 65,
+        "option_text": "The __init__() method automatically runs and gives the object its starting values.",
+        "is_correct": 1,
+        "order": 0,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    },
+    {
+        "id": 66,
+        "question_id": 66,
+        "option_text": "Student",
+        "is_correct": 1,
+        "order": 0,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    },
+    {
+        "id": 67,
+        "question_id": 67,
+        "option_text": "__init__()",
+        "is_correct": 1,
+        "order": 0,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    },
+    {
+        "id": 68,
+        "question_id": 68,
+        "option_text": "name",
+        "is_correct": 1,
+        "order": 0,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    },
+    {
+        "id": 69,
+        "question_id": 69,
+        "option_text": "self.name",
+        "is_correct": 1,
+        "order": 0,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    },
+    {
+        "id": 70,
+        "question_id": 70,
+        "option_text": "It stores the value of name in the object's name attribute.",
+        "is_correct": 1,
+        "order": 0,
+        "created_at": "2026-09-17 04:19:25",
+        "updated_at": "2026-09-17 04:19:25"
+    }
+]
