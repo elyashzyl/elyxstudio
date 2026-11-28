@@ -14,27 +14,38 @@ initTheme();
 const appName =
     import.meta.env.VITE_APP_NAME ||
     (typeof document !== 'undefined'
-        ? document.querySelector('meta[name="app-name"]')?.getAttribute('content')
+        ? document
+              .querySelector('meta[name="app-name"]')
+              ?.getAttribute('content')
         : null) ||
     'ELYX Studio';
 
 function saveScroll() {
-    sessionStorage.setItem(`scroll_pos_${window.location.pathname}`, String(window.scrollY));
+    sessionStorage.setItem(
+        `scroll_pos_${window.location.pathname}`,
+        String(window.scrollY),
+    );
 }
 
 function restoreScroll() {
     if (window.location.hash) {
         setTimeout(() => {
             try {
-                document.querySelector(window.location.hash)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document
+                    .querySelector(window.location.hash)
+                    ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } catch {
                 // Ignore invalid hash selectors.
             }
         }, 120);
+
         return;
     }
 
-    const saved = sessionStorage.getItem(`scroll_pos_${window.location.pathname}`);
+    const saved = sessionStorage.getItem(
+        `scroll_pos_${window.location.pathname}`,
+    );
+
     if (saved) {
         const top = Number.parseInt(saved, 10);
         setTimeout(() => window.scrollTo({ top, behavior: 'auto' }), 50);
@@ -47,11 +58,24 @@ window.addEventListener('beforeunload', saveScroll);
 restoreScroll();
 
 createInertiaApp({
-    title: (title) => (title ? `${title} - ${appName}` : appName),
+    title: (title) =>
+        title && title !== appName ? `${title} - ${appName}` : appName,
     layout: (name) => {
-        if (name.startsWith('Storefront/')) return StorefrontLayout;
-        if (name.startsWith('Commerce/')) return CommerceLayout;
-        if (name.startsWith('auth/')) return AuthLayout;
+        if (name.startsWith('Storefront/')) {
+            return StorefrontLayout;
+        }
+
+        if (name.startsWith('Commerce/')) {
+            return CommerceLayout;
+        }
+
+        if (name === 'auth/Login') {
+            return undefined;
+        }
+
+        if (name.startsWith('auth/')) {
+            return AuthLayout;
+        }
 
         return undefined;
     },

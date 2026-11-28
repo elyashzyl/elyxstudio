@@ -23,11 +23,13 @@ defineProps<{
                             class="text-2xl font-bold tracking-tight"
                             style="color: var(--gl-primary)"
                         >
-                            <span style="color: #e63946">Edu</span>Pulse
+                            <span style="color: #27a9e8">ELYX</span> Studio
                         </span>
                     </Link>
                     <div class="space-y-2 text-center">
-                        <h1 class="text-xl font-medium">{{ title }}</h1>
+                        <h1 class="text-xl font-medium">
+                            {{ title || 'ELYX Studio' }}
+                        </h1>
                         <p class="text-center text-sm text-muted-foreground">
                             {{ description }}
                         </p>
