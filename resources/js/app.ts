@@ -69,7 +69,11 @@ createInertiaApp({
             return CommerceLayout;
         }
 
-        if (name === 'auth/Login' || name === 'auth/Register') {
+        if (
+            name === 'auth/Login' ||
+            name === 'auth/Register' ||
+            name === 'auth/ForgotPassword'
+        ) {
             return undefined;
         }
 

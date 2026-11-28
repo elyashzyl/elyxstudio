@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { Form, Head, Link } from '@inertiajs/vue3';
-import { Mail, ArrowLeft } from '@lucide/vue';
+import { Form, Head } from '@inertiajs/vue3';
+import { ArrowLeft, Mail } from '@lucide/vue';
+import ElyxAuthShell from '@/components/ElyxAuthShell.vue';
 import InputError from '@/components/InputError.vue';
 import TextLink from '@/components/TextLink.vue';
 import { Button } from '@/components/ui/button';
@@ -10,201 +11,73 @@ import { Spinner } from '@/components/ui/spinner';
 import { login } from '@/routes';
 import { email } from '@/routes/password';
 
-defineOptions({
-    layout: {
-        title: 'Forgot password',
-        description: 'Enter your email to receive a password reset link',
-    },
-});
-
-defineProps<{
+const props = defineProps<{
     status?: string;
 }>();
 </script>
 
 <template>
-    <Head title="Forgot password" />
+    <Head title="Reset your ELYX password" />
 
-    <div
-        class="login-dark fixed inset-0 flex items-center justify-center"
-        style="background: var(--gl-bg)"
+    <ElyxAuthShell
+        eyebrow="Account recovery"
+        title="Get back to your workspace."
+        description="Enter the email you use with ELYX and we’ll send a secure link to create a new password."
     >
-        <!-- Back to home -->
-        <Link
-            href="/"
-            class="absolute top-5 left-5 z-30 inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-semibold backdrop-blur-md transition-all hover:scale-105 active:scale-95"
-            style="
-                background: var(--gl-surface-2);
-                color: var(--gl-text-secondary);
-                border: 1px solid var(--gl-border);
-            "
-        >
-            <ArrowLeft class="h-3.5 w-3.5" :stroke-width="2" />
-            <span>Back to home</span>
-        </Link>
-
-        <!-- Ambient bg -->
-        <div
-            class="absolute inset-0"
-            style="
-                background:
-                    radial-gradient(
-                        circle at 30% 50%,
-                        rgba(59, 130, 246, 0.06),
-                        transparent 50%
-                    ),
-                    radial-gradient(
-                        circle at 70% 50%,
-                        rgba(124, 58, 237, 0.06),
-                        transparent 50%
-                    );
-            "
-        ></div>
-
-        <div class="relative z-10 w-full max-w-md px-6">
-            <!-- Card -->
+        <template #status>
             <div
-                class="rounded-3xl p-8"
-                style="
-                    background: var(--gl-surface);
-                    border: 1px solid var(--gl-border);
-                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-                "
+                v-if="props.status"
+                class="mb-5 rounded-xl border border-[#b9e8d4] bg-[#f0fdf6] px-4 py-3 text-center text-sm font-medium text-[#087443]"
             >
-                <div class="mb-6 text-center">
-                    <img
-                        src="/logo.png"
-                        alt="ELYX Studio logo"
-                        class="mx-auto mb-4 h-16 w-16 rounded-full object-cover"
-                        style="box-shadow: 0 0 24px var(--gl-primary-glow)"
-                    />
-                    <h2
-                        class="text-xl font-bold"
-                        style="color: var(--gl-text-primary)"
-                    >
-                        Recover Your Adventure
-                    </h2>
-                    <p
-                        class="mt-2 text-sm"
-                        style="color: var(--gl-text-secondary)"
-                    >
-                        Don't worry — your progress is safe. Enter your email
-                        and we'll send you a recovery link.
-                    </p>
-                </div>
+                {{ props.status }}
+            </div>
+        </template>
 
-                <div
-                    v-if="status"
-                    class="mb-6 rounded-2xl px-4 py-3 text-center text-sm"
-                    style="
-                        background: rgba(16, 185, 129, 0.1);
-                        color: #10b981;
-                        border: 1px solid rgba(16, 185, 129, 0.2);
-                    "
+        <Form v-bind="email.form()" v-slot="{ errors, processing }">
+            <div class="grid gap-2">
+                <Label for="email" class="text-[13px] font-bold text-[#355d78]"
+                    >Email address</Label
                 >
-                    {{ status }}
+                <div class="relative">
+                    <Mail
+                        aria-hidden="true"
+                        class="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-[#8aa4b8]"
+                    />
+                    <Input
+                        id="email"
+                        type="email"
+                        name="email"
+                        autocomplete="email"
+                        autofocus
+                        required
+                        placeholder="you@example.com"
+                        class="h-12 rounded-xl border-[#c7e3f3] bg-[#fbfeff] pl-10 text-[#102a43] shadow-none placeholder:text-[#8aa4b8] focus-visible:border-[#27a9e8] focus-visible:ring-[#27a9e8]/20"
+                    />
                 </div>
-
-                <Form v-bind="email.form()" v-slot="{ errors, processing }">
-                    <div class="mb-6 grid gap-2">
-                        <Label
-                            for="email"
-                            style="color: var(--gl-text-secondary)"
-                            >Email address</Label
-                        >
-                        <Input
-                            id="email"
-                            type="email"
-                            name="email"
-                            autocomplete="off"
-                            autofocus
-                            placeholder="email@example.com"
-                        />
-                        <InputError :message="errors.email" />
-                    </div>
-
-                    <Button class="mb-4 w-full" :disabled="processing">
-                        <Spinner v-if="processing" />
-                        <Mail v-else class="mr-1.5 h-4 w-4" :stroke-width="2" />
-                        Send Recovery Link
-                    </Button>
-                </Form>
-
-                <div class="text-center">
-                    <TextLink
-                        :href="login()"
-                        class="inline-flex items-center gap-1 text-sm"
-                    >
-                        <ArrowLeft class="h-3.5 w-3.5" :stroke-width="2" />
-                        Back to log in
-                    </TextLink>
-                    <div class="mt-2.5">
-                        <Link
-                            href="/"
-                            class="inline-flex items-center gap-1.5 text-xs font-medium transition-colors hover:underline"
-                            style="color: var(--gl-text-muted)"
-                        >
-                            <ArrowLeft class="h-3 w-3" :stroke-width="2" />
-                            Back to home
-                        </Link>
-                    </div>
-                </div>
+                <InputError :message="errors.email" />
             </div>
 
-            <p
-                class="mt-6 text-center text-xs"
-                style="color: var(--gl-text-muted)"
+            <Button
+                type="submit"
+                class="mt-6 h-12 w-full rounded-xl bg-[#0f6ea8] text-sm font-bold text-white shadow-[0_10px_22px_rgba(15,110,168,0.2)] transition hover:bg-[#0b527e]"
+                :disabled="processing"
             >
-                Learn. Play. Achieve.
-            </p>
-        </div>
-    </div>
-</template>
+                <Spinner v-if="processing" />
+                <template v-else>
+                    <Mail class="h-4 w-4" />
+                    Send reset link
+                </template>
+            </Button>
+        </Form>
 
-<style>
-.login-dark {
-    --background: var(--gl-bg);
-    --foreground: var(--gl-text-primary);
-    --card: var(--gl-surface);
-    --card-foreground: var(--gl-text-primary);
-    --border: var(--gl-border);
-    --input: var(--gl-border);
-    --muted-foreground: var(--gl-text-muted);
-    --muted: var(--gl-surface-2);
-    --primary: var(--gl-primary);
-    --primary-foreground: #fff;
-    --secondary: var(--gl-surface-2);
-    --secondary-foreground: var(--gl-text-primary);
-    --accent: var(--gl-surface-2);
-    --accent-foreground: var(--gl-text-primary);
-    --ring: var(--gl-primary);
-    color-scheme: light dark;
-}
-.login-dark input::placeholder {
-    color: var(--gl-text-muted) !important;
-}
-.login-dark [data-slot='input'] {
-    background: var(--gl-surface) !important;
-    border-color: var(--gl-border) !important;
-    color: var(--gl-text-primary) !important;
-}
-.login-dark [data-slot='button'] {
-    background: linear-gradient(
-        135deg,
-        var(--gl-primary),
-        var(--gl-secondary)
-    ) !important;
-    color: #fff !important;
-    box-shadow: 0 0 12px var(--gl-primary-glow);
-}
-.login-dark [data-slot='label'],
-.login-dark label {
-    color: var(--gl-text-secondary) !important;
-}
-.login-dark a {
-    color: var(--gl-primary);
-}
-.login-dark span {
-    color: var(--gl-text-secondary);
-}
-</style>
+        <template #footer>
+            <TextLink
+                :href="login()"
+                class="inline-flex items-center gap-1.5 font-bold text-[#0f6ea8] hover:text-[#0b527e]"
+            >
+                <ArrowLeft class="h-3.5 w-3.5" />
+                Back to sign in
+            </TextLink>
+        </template>
+    </ElyxAuthShell>
+</template>
