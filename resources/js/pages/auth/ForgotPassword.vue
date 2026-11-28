@@ -74,7 +74,7 @@ defineProps<{
                 <div class="mb-6 text-center">
                     <img
                         src="/logo.png"
-                        alt="EduPulse logo"
+                        alt="ELYX Studio logo"
                         class="mx-auto mb-4 h-16 w-16 rounded-full object-cover"
                         style="box-shadow: 0 0 24px var(--gl-primary-glow)"
                     />

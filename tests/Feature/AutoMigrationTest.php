@@ -1,7 +1,7 @@
 <?php
 
 use App\Services\AutoMigrationService;
-use Illuminate\Database\QueryException;
+use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
@@ -31,7 +31,7 @@ test('auto migration service creates repository if repository does not exist', f
     // Drop migrations table to simulate bare database
     Schema::dropIfExists('migrations');
 
-    /** @var \Illuminate\Database\Migrations\Migrator $migrator */
+    /** @var Migrator $migrator */
     $migrator = app('migrator');
     expect($migrator->repositoryExists())->toBeFalse();
 
@@ -46,7 +46,7 @@ test('auto migration service catches database connection failures gracefully wit
 
     // Mock DB connection getPdo to throw exception
     DB::shouldReceive('connection->getPdo')
-        ->andThrow(new \PDOException('SQLSTATE[HY000] [2002] Connection refused'));
+        ->andThrow(new PDOException('SQLSTATE[HY000] [2002] Connection refused'));
 
     $executed = AutoMigrationService::runIfNeeded(force: true);
 

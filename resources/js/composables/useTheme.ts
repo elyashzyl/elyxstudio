@@ -618,7 +618,7 @@ export const THEMES: ThemeOption[] = [
     },
 ];
 
-const STORAGE_KEY = 'edupulse-theme';
+const STORAGE_KEY = 'elyx-theme';
 
 export const activeTheme = ref<string>('default');
 export const isDark = ref<boolean>(true);

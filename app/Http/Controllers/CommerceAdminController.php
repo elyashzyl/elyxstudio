@@ -42,7 +42,7 @@ class CommerceAdminController extends Controller
         ]));
 
         return Inertia::render(
-            $request->is('admin/commerce*') ? 'Commerce/AdminDashboard' : 'Teacher/Commerce',
+            'Commerce/AdminDashboard',
             [
                 'products' => $products,
                 'sellers' => User::query()->where('role', 'seller')->orderBy('name')->get(['id', 'name', 'email']),
@@ -53,7 +53,7 @@ class CommerceAdminController extends Controller
                     ->limit(100)
                     ->get(),
                 'filters' => ['status' => $status ?: 'all'],
-                'basePath' => $request->is('admin/commerce*') ? '/admin/commerce' : '/teacher/commerce',
+                'basePath' => '/admin/commerce',
                 'stats' => [
                     'products' => Product::query()->where('is_active', true)->where('approval_status', 'approved')->count(),
                     'pending_products' => Product::query()->whereIn('approval_status', ['draft', 'submitted'])->count(),

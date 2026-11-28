@@ -15,10 +15,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             ElyxStudioSeeder::class,
-            EduPulseDatabaseSeeder::class,
-            ShapesColorsInDesignQuizSeeder::class,
-            AnnouncementSeeder::class,
-            ClassTodoSeeder::class,
         ]);
 
         // Support environment-configured administrator credentials if provided
@@ -29,7 +25,7 @@ class DatabaseSeeder extends Seeder
         if ($adminUsername && $adminPassword) {
             $adminEmail = filter_var($adminUsername, FILTER_VALIDATE_EMAIL)
                 ? $adminUsername
-                : "{$adminUsername}@elytrack.local";
+                : "{$adminUsername}@elyx.studio";
 
             User::updateOrCreate(
                 ['email' => $adminEmail],

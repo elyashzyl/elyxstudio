@@ -2,111 +2,45 @@
 
 namespace App\Services;
 
-use App\Models\ActivityLog;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Log;
 
 class ActivityLogger
 {
-    /**
-     * Log an activity in the system.
-     */
     public static function log(
         string $action,
         string $description,
         mixed $entity = null,
         ?User $user = null,
-        array $properties = []
-    ): ?ActivityLog {
-        try {
-            /** @var User|null $currentUser */
-            $currentUser = $user ?? Auth::user();
-            $ip = Request::ip();
-            $agent = Request::userAgent();
-
-            $entityType = null;
-            $entityId = null;
-
-            if ($entity) {
-                if (is_object($entity)) {
-                    $entityType = class_basename($entity);
-                    if (isset($entity->id)) {
-                        $entityId = (int) $entity->id;
-                    }
-                } elseif (is_string($entity)) {
-                    $entityType = $entity;
-                }
-            }
-
-            $userId = ($currentUser && $currentUser->exists) ? $currentUser->id : null;
-
-            return ActivityLog::create([
-                'user_id' => $userId,
-                'user_name' => $currentUser?->name ?? 'Guest',
-                'user_email' => $currentUser?->email,
-                'user_role' => $currentUser?->role ?? 'guest',
-                'action' => $action,
-                'description' => $description,
-                'entity_type' => $entityType,
-                'entity_id' => $entityId,
-                'ip_address' => $ip,
-                'user_agent' => $agent,
-                'properties' => ! empty($properties) ? $properties : null,
-            ]);
-        } catch (\Throwable $e) {
-            report($e);
-
-            return null;
-        }
+        array $properties = [],
+    ): void {
+        Log::info('ELYX activity', [
+            'action' => $action,
+            'description' => $description,
+            'entity' => is_object($entity) ? class_basename($entity) : $entity,
+            'entity_id' => is_object($entity) && isset($entity->id) ? $entity->id : null,
+            'user_id' => $user?->id,
+            'user_role' => $user?->role,
+            'properties' => $properties,
+        ]);
     }
 
-    /**
-     * Log a successful login event.
-     */
     public static function logLogin(User $user): void
     {
-        $roleTitle = match ($user->role) {
-            'superadmin' => 'Administrator',
-            'teacher' => 'Teacher',
-            default => 'Student',
-        };
-
-        self::log(
-            action: 'login',
-            description: "{$roleTitle} {$user->name} logged in successfully",
-            entity: $user,
-            user: $user,
-            properties: [
-                'role' => $user->role,
-                'grade' => $user->grade,
-            ]
-        );
+        self::log('login', "{$user->name} logged in successfully", $user, $user, [
+            'role' => $user->role,
+        ]);
     }
 
-    /**
-     * Log a logout event.
-     */
     public static function logLogout(User $user): void
     {
-        self::log(
-            action: 'logout',
-            description: "User {$user->name} logged out",
-            entity: $user,
-            user: $user
-        );
+        self::log('logout', "User {$user->name} logged out", $user, $user);
     }
 
-    /**
-     * Log a failed login attempt.
-     */
     public static function logFailedLogin(string $email): void
     {
-        self::log(
-            action: 'failed_login',
-            description: "Failed login attempt for email: {$email}",
-            user: null,
-            properties: ['email' => $email]
-        );
+        self::log('failed_login', "Failed login attempt for email: {$email}", null, null, [
+            'email' => $email,
+        ]);
     }
 }

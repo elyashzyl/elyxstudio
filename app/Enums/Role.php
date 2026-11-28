@@ -4,11 +4,9 @@ namespace App\Enums;
 
 enum Role: string
 {
-    case Student    = 'student';
-    case Teacher    = 'teacher';
     case Superadmin = 'superadmin';
-    case Buyer      = 'buyer';
-    case Seller     = 'seller';
+    case Buyer = 'buyer';
+    case Seller = 'seller';
 
     public static function commerceRoles(): array
     {
@@ -17,6 +15,11 @@ enum Role: string
 
     public static function publicRegistrationRoles(): array
     {
-        return [self::Student->value, self::Teacher->value, ...self::commerceRoles()];
+        return self::commerceRoles();
+    }
+
+    public static function values(): array
+    {
+        return [self::Superadmin->value, ...self::commerceRoles()];
     }
 }

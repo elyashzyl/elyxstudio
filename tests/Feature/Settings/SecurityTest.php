@@ -2,23 +2,30 @@
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Inertia\Testing\AssertableInertia as Assert;
-use Laravel\Fortify\Features;
 
-test('security page is redirected to student profile', function () {
-    $user = User::factory()->create();
+function confirmedSecuritySession(): array
+{
+    return ['auth.password_confirmed_at' => now()->unix()];
+}
+
+test('buyers can view the security settings page', function () {
+    $user = User::factory()->create(['role' => 'buyer']);
 
     $this->actingAs($user)
+        ->withSession(confirmedSecuritySession())
         ->get(route('security.edit'))
-        ->assertRedirect(route('student.profile'));
+        ->assertOk()
+        ->assertInertia(fn ($page) => $page->component('settings/Security'));
 });
 
-test('security page for teacher is redirected to teacher profile', function () {
-    $teacher = User::factory()->create(['role' => 'teacher']);
+test('sellers can view the security settings page', function () {
+    $seller = User::factory()->create(['role' => 'seller']);
 
-    $this->actingAs($teacher)
+    $this->actingAs($seller)
+        ->withSession(confirmedSecuritySession())
         ->get(route('security.edit'))
-        ->assertRedirect(route('teacher.profile'));
+        ->assertOk()
+        ->assertInertia(fn ($page) => $page->component('settings/Security'));
 });
 
 test('password can be updated', function () {

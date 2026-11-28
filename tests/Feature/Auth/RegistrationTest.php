@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Laravel\Fortify\Features;
 
 beforeEach(function () {
@@ -12,14 +13,28 @@ test('registration screen can be rendered', function () {
     $response->assertOk();
 });
 
-test('new users can register', function () {
+test('buyers can create an ELYX account', function () {
     $response = $this->post(route('register.store'), [
-        'name' => 'Test User',
-        'email' => 'test@example.com',
+        'name' => 'Test Buyer',
+        'email' => 'buyer@example.com',
         'password' => 'password',
         'password_confirmation' => 'password',
+        'role' => 'buyer',
     ]);
 
     $this->assertAuthenticated();
-    $response->assertRedirect(route('teacher.dashboard'));
+    $response->assertRedirect(route('account'));
+    expect(User::query()->where('email', 'buyer@example.com')->value('role'))->toBe('buyer');
+});
+
+test('public registration cannot create an administrator account', function () {
+    $this->post(route('register.store'), [
+        'name' => 'Attempted Admin',
+        'email' => 'admin-attempt@example.com',
+        'password' => 'password',
+        'password_confirmation' => 'password',
+        'role' => 'superadmin',
+    ])->assertSessionHasErrors('role');
+
+    $this->assertGuest();
 });

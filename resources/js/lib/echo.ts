@@ -6,7 +6,7 @@ declare global {
     interface Window {
         Pusher: typeof Pusher;
         Echo: Echo<'reverb'> | Echo<'pusher'> | null;
-        EduPulseBroadcasting?: {
+        ElyxBroadcasting?: {
             driver?: string;
             reverb?: {
                 key?: string;
@@ -34,14 +34,14 @@ export function getEcho(configOverride?: any): Echo<'reverb'> | null {
 
     const broadcastConfig =
         configOverride ||
-        window.EduPulseBroadcasting?.reverb ||
+        window.ElyxBroadcasting?.reverb ||
         (window as any).__PAGE__?.props?.broadcasting?.reverb ||
         {};
 
     const key =
         broadcastConfig.key ||
         import.meta.env.VITE_REVERB_APP_KEY ||
-        'edupulse-key';
+        'elyx-key';
 
     const host =
         broadcastConfig.host ||

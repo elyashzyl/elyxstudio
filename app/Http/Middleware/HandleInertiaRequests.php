@@ -2,9 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\SchoolYear;
-use App\Services\Commerce\CartService;
 use App\Models\Setting;
+use App\Services\Commerce\CartService;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -23,7 +22,7 @@ class HandleInertiaRequests extends Middleware
 
         return [
             ...parent::share($request),
-            'name' => config('app.name'),
+            'name' => config('app.name', 'ELYX Studio'),
             'auth' => [
                 'user' => $user ? [
                     ...$user->toArray(),
@@ -31,9 +30,6 @@ class HandleInertiaRequests extends Middleware
                     'is_buyer' => $user->isBuyer(),
                     'is_seller' => $user->isSeller(),
                     'is_commerce_admin' => $user->isCommerceAdmin(),
-                    'is_grade_10' => $user->isGrade10(),
-                    'can_message_classmates' => $user->isStudent() ? $user->canMessageClassmates() : true,
-                    'allow_classmate_messaging' => (bool) ($user->allow_classmate_messaging ?? true),
                 ] : null,
             ],
             'impersonated_by' => session('impersonated_by'),
@@ -43,17 +39,11 @@ class HandleInertiaRequests extends Middleware
                 'error' => fn () => $request->session()->get('error'),
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
-            'xp_per_level' => \App\Helpers\LevelHelper::xpPerLevel(),
-            'messenger_system_enabled' => Setting::isMessengerSystemEnabled(),
-            'classmate_messaging_system_enabled' => Setting::isClassmateMessagingEnabled(),
             'support_email' => Setting::getSupportEmail(),
-            'cart' => fn () => collect(app(CartService::class)->summary())->only(['count', 'subtotal', 'total'])->all(),
             'payment_email' => Setting::getPaymentEmail(),
-            'school_years' => fn () => \Illuminate\Support\Facades\Schema::hasTable('school_years')
-                ? SchoolYear::orderByDesc('is_current')->orderByDesc('name')->get(['id', 'name', 'is_current', 'is_active'])
-                : [],
-            'current_school_year' => fn () => SchoolYear::current()?->only(['id', 'name', 'is_current']),
-            'selected_school_year_id' => fn () => SchoolYear::selectedFilter(),
+            'cart' => fn () => collect(app(CartService::class)->summary())
+                ->only(['count', 'subtotal', 'total'])
+                ->all(),
             'broadcasting' => [
                 'driver' => config('broadcasting.default'),
                 'reverb' => [

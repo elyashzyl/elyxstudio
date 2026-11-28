@@ -23,26 +23,19 @@ class EnsureCommerceRole
                 ->where('role', 'superadmin')
                 ->exists();
 
-        if ($user->isCommerceAdmin() || $impersonatingSuperadmin || in_array($user->role, $roles, true)) {
+        if ($impersonatingSuperadmin || ($roles === [] ? $user->isCommerceAdmin() : in_array($user->role, $roles, true))) {
             return $next($request);
         }
 
-        if ($request->expectsJson() || ! $request->isMethodSafe()) {
+        if ($roles === [] || $request->expectsJson() || ! $request->isMethodSafe()) {
             abort(403, 'You do not have access to this commerce area.');
         }
 
-        if ($user->isTeacher() || $user->isSuperadmin()) {
-            return redirect()->route('teacher.dashboard');
-        }
-
-        if ($user->isSeller()) {
-            return redirect()->route('seller.dashboard');
-        }
-
-        if ($user->isBuyer()) {
-            return redirect()->route('account');
-        }
-
-        return redirect()->route('student.dashboard');
+        return redirect()->to(match (true) {
+            $user->isCommerceAdmin() => route('admin.commerce.index'),
+            $user->isSeller() && $roles !== [] => route('seller.dashboard'),
+            $user->isBuyer() => route('account'),
+            default => route('home'),
+        });
     }
 }

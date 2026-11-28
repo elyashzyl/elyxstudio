@@ -6,14 +6,14 @@ ELYX Studio is a commerce and digital studio platform for selling curated digita
 
 ## Framework baseline
 
-The application is intentionally based on the EduPulse codebase at `C:\Users\New User\Herd\edupulse`:
+ELYX is a standalone commerce application with a deliberately small, auditable foundation:
 
-- Laravel 13 with Fortify authentication and Inertia server-side routing.
+- Laravel 13 with Fortify authentication, email verification, passkeys, two-factor authentication, and Inertia server-side routing.
 - Vue 3, TypeScript, Vite, Tailwind CSS v4, Lucide icons, and reusable layouts/components.
-- Eloquent migrations, models, seeders, factories, policies, queued jobs, notifications, and tests.
-- Shared Inertia middleware, activity logging, secure headers, theme handling, and deployment files.
+- Eloquent migrations, models, seeders, factories, authorization middleware, queued jobs, notifications, and tests.
+- Shared Inertia middleware, activity logging, secure headers, sky-blue theme handling, and deployment files.
 
-The inherited education modules are retained as framework capabilities. ELYX-specific commerce code lives in separate `Commerce`/`Storefront` modules so the two domains do not become tightly coupled.
+The application contains only ELYX commerce and studio workflows. Commerce code is organized into `Commerce` and `Storefront` modules so catalog, orders, users, and seller operations remain clearly separated.
 
 ## Current vertical slice
 
@@ -61,8 +61,8 @@ Immutable purchase lines. The item name and unit price are copied from the catal
 
 - [ ] Choose a payment provider based on launch geography and currencies.
 - [ ] Replace the current order-request checkout with hosted checkout and webhook verification; never trust client payment state.
-- [ ] Add authenticated customer order history and profile preferences.
-- Add discount codes, tax configuration, shipping rules, and abandoned-cart events.
+- [x] Add authenticated customer order history and profile preferences.
+- [ ] Add discount codes, tax configuration, shipping rules, and abandoned-cart events.
 
 ### Phase 4 — studio services
 
@@ -91,4 +91,4 @@ Immutable purchase lines. The item name and unit price are copied from the catal
 - Select and configure a payment provider in test mode, then verify webhook signatures before enabling payment capture.
 - Configure managed product media storage before replacing seeded remote image URLs.
 - Test guest checkout, authenticated checkout, out-of-stock behavior, duplicate submissions, reservation expiry, and email delivery.
-- Run targeted ELYX tests plus the project lint, format, type, and full test checks; inherited portal diagnostics should be reviewed separately.
+- Run targeted ELYX tests plus the project lint, format, type, and full test checks before each release.

@@ -76,7 +76,7 @@ const navItems = computed(() => {
 
 const isActive = (href: string) => {
     if (href === '/admin/commerce') {
-        return page.url === '/admin/commerce' || page.url.startsWith('/teacher/commerce');
+        return page.url === '/admin/commerce';
     }
 
     if (href === '/account') {

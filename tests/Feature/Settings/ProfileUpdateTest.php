@@ -8,19 +8,13 @@ use Illuminate\Support\Facades\Storage;
 test('profile page is displayed', function () {
     $user = User::factory()->create();
 
-    $response = $this
-        ->actingAs($user)
-        ->get(route('profile.edit'));
-
-    $response->assertRedirect(route('student.profile'));
+    $this->actingAs($user)
+        ->get(route('profile.edit'))
+        ->assertOk()
+        ->assertInertia(fn ($page) => $page->component('settings/Profile'));
 });
 
-test('profile information can update grade level and section', function () {
-    $gradeLevel = \App\Models\GradeLevel::create(['name' => 'Grade 10']);
-    $section = \App\Models\Section::create([
-        'name' => 'St. Thomas',
-        'grade_level_id' => $gradeLevel->id,
-    ]);
+test('profile information can update the ELYX account details', function () {
     $user = User::factory()->create();
 
     $response = $this
@@ -29,19 +23,14 @@ test('profile information can update grade level and section', function () {
             'name' => 'Test User',
             'email' => $user->email,
             'gender' => 'Male',
-            'grade_level_id' => $gradeLevel->id,
-            'section_id' => $section->id,
         ]);
 
     $response
         ->assertSessionHasNoErrors()
         ->assertRedirect(route('profile.edit'));
 
-    $user->refresh();
-
-    expect($user->gender)->toBe('Male');
-    expect($user->grade_level_id)->toBe($gradeLevel->id);
-    expect($user->section_id)->toBe($section->id);
+    expect($user->refresh()->name)->toBe('Test User')
+        ->and($user->gender)->toBe('Male');
 });
 
 test('profile customization can update bio and upload a photo', function () {
@@ -50,19 +39,18 @@ test('profile customization can update bio and upload a photo', function () {
     $response = $this
         ->actingAs($user)
         ->post(route('profile.customize'), [
-            'bio' => 'I enjoy learning with my classmates.',
+            'bio' => 'I build thoughtful digital products.',
             'profile_photo' => UploadedFile::fake()->image('profile.png', 300, 300),
         ]);
 
     $response->assertSessionHasNoErrors();
     $user->refresh();
 
-    expect($user->bio)->toBe('I enjoy learning with my classmates.');
-    expect($user->profile_photo_updated_at)->not->toBeNull();
-    expect($user->profilePhoto)->not->toBeNull();
-    expect($user->profilePhoto->mime_type)->toBe('image/png');
-    expect($user->profilePhoto->contents())->not->toBe('');
-    expect($user->avatar)->toContain(route('profile.avatar', $user, false));
+    expect($user->bio)->toBe('I build thoughtful digital products.')
+        ->and($user->profile_photo_updated_at)->not->toBeNull()
+        ->and($user->profilePhoto)->not->toBeNull()
+        ->and($user->profilePhoto->mime_type)->toBe('image/png')
+        ->and($user->profilePhoto->contents())->not->toBe('');
 });
 
 test('profile photo is stored in the database, not on disk', function () {
@@ -107,9 +95,9 @@ test('bio-only update keeps the existing profile photo', function () {
     ])->assertSessionHasNoErrors();
 
     $user->refresh();
-    expect($user->bio)->toBe('Updated bio');
-    expect($user->profilePhoto)->not->toBeNull();
-    expect($user->avatar)->not->toBeNull();
+    expect($user->bio)->toBe('Updated bio')
+        ->and($user->profilePhoto)->not->toBeNull()
+        ->and($user->avatar)->not->toBeNull();
 });
 
 test('profile avatar endpoint serves the stored profile photo', function () {
@@ -148,8 +136,8 @@ test('profile customization rejects unsupported photo types', function () {
         ]);
 
     $response->assertSessionHasErrors('profile_photo');
-    expect($user->fresh()->profilePhoto)->toBeNull();
-    expect($user->fresh()->profile_photo_updated_at)->toBeNull();
+    expect($user->fresh()->profilePhoto)->toBeNull()
+        ->and($user->fresh()->profile_photo_updated_at)->toBeNull();
 });
 
 test('profile customization replaces and removes the previous photo', function () {
@@ -160,40 +148,31 @@ test('profile customization replaces and removes the previous photo', function (
     ])->assertSessionHasNoErrors();
     $oldData = $user->fresh()->profilePhoto->data;
 
-    $response = $this
-        ->actingAs($user)
-        ->post(route('profile.customize'), [
-            'profile_photo' => UploadedFile::fake()->image('new.jpg', 50, 50),
-        ]);
+    $this->actingAs($user)->post(route('profile.customize'), [
+        'profile_photo' => UploadedFile::fake()->image('new.jpg', 50, 50),
+    ])->assertSessionHasNoErrors();
 
-    $response->assertSessionHasNoErrors();
-    expect(UserProfilePhoto::where('user_id', $user->id)->count())->toBe(1);
-    expect($user->fresh()->profilePhoto->data)->not->toBe($oldData);
-    expect($user->fresh()->profilePhoto->mime_type)->toBe('image/jpeg');
+    expect(UserProfilePhoto::where('user_id', $user->id)->count())->toBe(1)
+        ->and($user->fresh()->profilePhoto->data)->not->toBe($oldData)
+        ->and($user->fresh()->profilePhoto->mime_type)->toBe('image/jpeg');
 
-    $response = $this
-        ->actingAs($user)
-        ->post(route('profile.customize'), [
-            'remove_profile_photo' => true,
-        ]);
+    $this->actingAs($user)->post(route('profile.customize'), [
+        'remove_profile_photo' => true,
+    ])->assertSessionHasNoErrors();
 
-    $response->assertSessionHasNoErrors();
-    expect($user->fresh()->profile_photo_updated_at)->toBeNull();
-    expect($user->fresh()->avatar)->toBeNull();
-    expect(UserProfilePhoto::where('user_id', $user->id)->exists())->toBeFalse();
+    expect($user->fresh()->profile_photo_updated_at)->toBeNull()
+        ->and($user->fresh()->avatar)->toBeNull()
+        ->and(UserProfilePhoto::where('user_id', $user->id)->exists())->toBeFalse();
 });
 
 test('email verification status is unchanged when the email address is unchanged', function () {
     $user = User::factory()->create();
 
-    $response = $this
-        ->actingAs($user)
+    $this->actingAs($user)
         ->patch(route('profile.update'), [
             'name' => 'Test User',
             'email' => $user->email,
-        ]);
-
-    $response
+        ])
         ->assertSessionHasNoErrors()
         ->assertRedirect(route('profile.edit'));
 
@@ -203,13 +182,10 @@ test('email verification status is unchanged when the email address is unchanged
 test('user can delete their account', function () {
     $user = User::factory()->create();
 
-    $response = $this
-        ->actingAs($user)
+    $this->actingAs($user)
         ->delete(route('profile.destroy'), [
             'password' => 'password',
-        ]);
-
-    $response
+        ])
         ->assertSessionHasNoErrors()
         ->assertRedirect(route('home'));
 
@@ -229,14 +205,11 @@ test('deleting a user removes their stored profile photo', function () {
 test('correct password must be provided to delete account', function () {
     $user = User::factory()->create();
 
-    $response = $this
-        ->actingAs($user)
+    $this->actingAs($user)
         ->from(route('profile.edit'))
         ->delete(route('profile.destroy'), [
             'password' => 'wrong-password',
-        ]);
-
-    $response
+        ])
         ->assertSessionHasErrors('password')
         ->assertRedirect(route('profile.edit'));
 

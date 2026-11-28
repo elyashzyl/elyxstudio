@@ -1,7 +1,7 @@
 /*
  * ELYX commerce contrast layer.
  *
- * EduPulse owns the global theme and intentionally recolors generic
+ * ELYX Studio owns the global theme and intentionally recolors generic
  * .min-h-screen, bg-white, form controls, and text utilities in dark mode.
  * ELYX storefront pages are a branded light commerce surface, so keep their
  * authored sky-blue palette isolated from those global portal rules.
@@ -21,7 +21,7 @@
 }
 
 /* Authenticated ELYX workspace shell. The interaction model follows the
- * EduPulse sidebar layout, while the presentation remains ELYX-specific. */
+ * commerce workspace layout, while the presentation remains ELYX-specific. */
 .elyx-panel-shell {
     --elyx-panel-navy: #102a43;
     --elyx-panel-muted: #5a7890;
@@ -383,7 +383,7 @@
 }
 
 /* Dark mode must not turn the light ELYX storefront into dark navy text on
- * dark EduPulse surfaces. This intentionally applies to all ELYX commerce
+ * dark legacy surfaces. This intentionally applies to all ELYX commerce
  * layouts, including buyer, seller, order, and public storefront screens. */
 .dark-mode .elyx-site,
 .dark .elyx-site {
@@ -447,7 +447,7 @@
     color: #55718a !important;
 }
 
-/* Admin commerce workspace: keep the selected EduPulse surface theme, but
+/* Admin commerce workspace: keep the selected ELYX surface theme, but
  * give the operational UI reliable contrast and a sky-blue action accent. */
 .commerce-admin-workspace {
     --gl-primary: #0f6ea8;
@@ -523,7 +523,7 @@
     color: var(--gl-text-primary) !important;
 }
 
-/* Final ELYX contrast contract. EduPulse themes redefine the shared --gl-*
+/* Final ELYX contrast contract. Theme presets redefine the shared --gl-*
  * variables and apply high-specificity dark-mode rules to generic links,
  * tables, and controls. Re-declare the ELYX surface variables locally so
  * those inherited rules cannot make ELYX text disappear or lose contrast. */
@@ -652,9 +652,7 @@
     color: var(--gl-text-secondary) !important;
 }
 
-/* The teacher compatibility route still renders the legacy EduPulse shell,
- * but its commerce workspace is ELYX-owned and needs the same light contrast
- * contract as the new panel route. */
+/* Commerce workspace contrast contract for authenticated ELYX panels. */
 .dark-mode .commerce-admin-workspace,
 .dark .commerce-admin-workspace {
     --gl-bg: #f4fbff;
@@ -673,9 +671,7 @@
     color: #102a43 !important;
 }
 
-/* ELYX account directory. This is intentionally separate from the inherited
- * EduPulse user-management surface, while the secure CRUD actions remain the
- * same server-side workflow. */
+/* ELYX account directory with secure server-side CRUD actions. */
 .commerce-users-workspace {
     min-height: calc(100vh - 5.5rem);
     background: transparent;

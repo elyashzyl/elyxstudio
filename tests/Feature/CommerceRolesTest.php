@@ -129,17 +129,17 @@ test('seller dashboards and sales are scoped to the authenticated seller', funct
             ->where('orders.0.items.0.name', $ownProduct->name));
 });
 
-test('buyers and teachers cannot access seller workflows', function () {
+test('buyers and administrators cannot access seller workflows', function () {
     $buyer = User::factory()->create(['role' => 'buyer']);
-    $teacher = User::factory()->create(['role' => 'teacher']);
+    $admin = User::factory()->create(['role' => 'superadmin']);
 
     $this->actingAs($buyer)
         ->get(route('seller.dashboard'))
         ->assertRedirect(route('account'));
 
-    $this->actingAs($teacher)
+    $this->actingAs($admin)
         ->get(route('seller.dashboard'))
-        ->assertRedirect(route('teacher.dashboard'));
+        ->assertRedirect(route('admin.commerce.index'));
 
     $this->actingAs($buyer)
         ->post(route('seller.products.store'), [])

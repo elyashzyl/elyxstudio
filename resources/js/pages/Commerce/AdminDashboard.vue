@@ -71,7 +71,7 @@ const flash = computed(() => (page.props as any).flash);
 const editing = ref<Product | null>(null);
 const showProductForm = ref(false);
 const statusFilter = ref(props.filters.status || 'all');
-const basePath = computed(() => props.basePath || '/teacher/commerce');
+const basePath = computed(() => props.basePath || '/admin/commerce');
 const paymentStatuses: PaymentStatus[] = [
     'unpaid',
     'paid',

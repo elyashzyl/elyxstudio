@@ -9,9 +9,9 @@ class Setting extends Model
 {
     public $timestamps = false;
 
-    protected $fillable = ['key', 'value'];
-
     public $incrementing = false;
+
+    protected $fillable = ['key', 'value'];
 
     protected $keyType = 'string';
 
@@ -24,9 +24,7 @@ class Setting extends Model
                 return $default;
             }
 
-            $setting = static::query()->find($key);
-
-            return $setting ? $setting->value : $default;
+            return static::query()->find($key)?->value ?? $default;
         } catch (\Throwable) {
             return $default;
         }
@@ -34,55 +32,24 @@ class Setting extends Model
 
     public static function set(string $key, mixed $value): void
     {
-        static::updateOrCreate(
-            ['key' => $key],
-            ['value' => is_bool($value) ? ($value ? 'true' : 'false') : (string) $value],
-        );
-    }
-
-    public static function isMessengerSystemEnabled(): bool
-    {
-        return static::get('messenger_system_enabled') !== 'false';
-    }
-
-    public static function isClassmateMessagingEnabled(): bool
-    {
-        return static::get('classmate_messaging_enabled') !== 'false';
-    }
-
-    public static function getSchoolName(): string
-    {
-        return (string) static::get('school_name', env('SCHOOL_NAME', config('app.name', 'EduPulse')));
-    }
-
-    public static function getSchoolShort(): string
-    {
-        return (string) static::get('school_short', env('SCHOOL_SHORT', 'EduPulse'));
-    }
-
-    public static function getSchoolId(): string
-    {
-        return (string) static::get('school_id', env('SCHOOL_ID', ''));
-    }
-
-    public static function getSchoolAddress(): string
-    {
-        return (string) static::get('school_address', env('SCHOOL_ADDRESS', ''));
+        static::updateOrCreate(['key' => $key], [
+            'value' => is_bool($value) ? ($value ? 'true' : 'false') : (string) $value,
+        ]);
     }
 
     public static function getSupportEmail(): string
     {
-        return (string) static::get('support_email', env('SUPPORT_EMAIL', 'ely.ashzyl@gmail.com'));
+        return (string) static::get('support_email', env('SUPPORT_EMAIL', 'hello@elyx.studio'));
     }
 
     public static function getPaymentEmail(): string
     {
-        return (string) static::get('payment_email', env('PAYMENT_EMAIL', 'ely.ashzyl@gmail.com'));
+        return (string) static::get('payment_email', env('PAYMENT_EMAIL', 'hello@elyx.studio'));
     }
 
     public static function getAppName(): string
     {
-        return (string) static::get('app_name', env('APP_NAME', config('app.name', 'EduPulse')));
+        return (string) static::get('app_name', env('APP_NAME', config('app.name', 'ELYX Studio')));
     }
 
     public static function isRegistrationEnabled(): bool
@@ -97,6 +64,6 @@ class Setting extends Model
 
     public static function getMaintenanceMessage(): string
     {
-        return (string) static::get('maintenance_message', 'System is undergoing brief maintenance.');
+        return (string) static::get('maintenance_message', 'The studio is undergoing brief maintenance.');
     }
 }

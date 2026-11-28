@@ -1,118 +1,106 @@
 <?php
 
-use App\Models\GradeLevel;
-use App\Models\Section;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
 beforeEach(function () {
-    $this->gradeLevel = GradeLevel::create(['name' => 'Grade 10', 'display_order' => 1]);
-    $this->section = Section::create(['name' => 'Section A', 'grade_level_id' => $this->gradeLevel->id]);
-
     $this->admin = User::factory()->create([
         'role' => 'superadmin',
         'email_verified_at' => now(),
     ]);
 
-    $this->teacher = User::factory()->create([
-        'role' => 'teacher',
+    $this->seller = User::factory()->create([
+        'role' => 'seller',
         'email_verified_at' => now(),
     ]);
 
-    $this->student = User::factory()->create([
-        'role' => 'student',
-        'grade_level_id' => $this->gradeLevel->id,
-        'section_id' => $this->section->id,
+    $this->buyer = User::factory()->create([
+        'role' => 'buyer',
         'email_verified_at' => null,
     ]);
 });
 
-test('superadmin can impersonate a teacher via POST', function () {
+test('superadmin can impersonate a seller via POST', function () {
     $response = $this->actingAs($this->admin)
-        ->post(route('admin.users.impersonate', $this->teacher));
+        ->post(route('admin.users.impersonate', $this->seller));
 
-    $response->assertRedirect(route('teacher.dashboard'));
-    expect(auth()->id())->toBe($this->teacher->id);
-    expect(session('impersonated_by'))->toBe($this->admin->id);
+    $response->assertRedirect(route('seller.dashboard'));
+    expect(auth()->id())->toBe($this->seller->id)
+        ->and(session('impersonated_by'))->toBe($this->admin->id);
 });
 
-test('superadmin can impersonate a student via POST and sets email_verified_at', function () {
-    expect($this->student->email_verified_at)->toBeNull();
+test('superadmin can impersonate a buyer via POST and verifies the account', function () {
+    expect($this->buyer->email_verified_at)->toBeNull();
 
     $response = $this->actingAs($this->admin)
-        ->post(route('admin.users.impersonate', $this->student));
+        ->post(route('admin.users.impersonate', $this->buyer));
 
-    $response->assertRedirect(route('student.dashboard'));
-    expect(auth()->id())->toBe($this->student->id);
-    expect(session('impersonated_by'))->toBe($this->admin->id);
-    expect($this->student->fresh()->email_verified_at)->not->toBeNull();
+    $response->assertRedirect(route('account'));
+    expect(auth()->id())->toBe($this->buyer->id)
+        ->and(session('impersonated_by'))->toBe($this->admin->id)
+        ->and($this->buyer->fresh()->email_verified_at)->not->toBeNull();
 });
 
 test('superadmin can impersonate via GET without 405 error', function () {
     $response = $this->actingAs($this->admin)
-        ->get(route('admin.users.impersonate', $this->student));
+        ->get(route('admin.users.impersonate', $this->buyer));
 
-    $response->assertRedirect(route('student.dashboard'));
-    expect(auth()->id())->toBe($this->student->id);
-    expect(session('impersonated_by'))->toBe($this->admin->id);
+    $response->assertRedirect(route('account'));
+    expect(auth()->id())->toBe($this->buyer->id)
+        ->and(session('impersonated_by'))->toBe($this->admin->id);
 });
 
-test('inertia request receives 409 location response for clean real-time redirect', function () {
+test('inertia request receives a 409 location response for clean real-time redirect', function () {
     $response = $this->actingAs($this->admin)
         ->withHeaders([
             'X-Inertia' => 'true',
             'X-Requested-With' => 'XMLHttpRequest',
         ])
-        ->post(route('admin.users.impersonate', $this->student));
+        ->post(route('admin.users.impersonate', $this->buyer));
 
     $response->assertStatus(409);
-    expect($response->headers->get('X-Inertia-Location'))->toBe(route('student.dashboard'));
-    expect(auth()->id())->toBe($this->student->id);
-    expect(session('impersonated_by'))->toBe($this->admin->id);
+    expect($response->headers->get('X-Inertia-Location'))->toBe(route('account'))
+        ->and(auth()->id())->toBe($this->buyer->id)
+        ->and(session('impersonated_by'))->toBe($this->admin->id);
 });
 
 test('superadmin can leave impersonation via POST and GET', function () {
-    // Via POST
-    $response = $this->actingAs($this->student)
+    $response = $this->actingAs($this->buyer)
         ->withSession(['impersonated_by' => $this->admin->id])
         ->post(route('users.leave-impersonation'));
 
-    $response->assertRedirect(route('teacher.dashboard'));
-    expect(auth()->id())->toBe($this->admin->id);
-    expect(session('impersonated_by'))->toBeNull();
+    $response->assertStatus(409);
+    expect($response->headers->get('X-Inertia-Location'))->toBe(route('admin.commerce.index'))
+        ->and(auth()->id())->toBe($this->admin->id)
+        ->and(session('impersonated_by'))->toBeNull();
 
-    // Via GET
-    $responseGet = $this->actingAs($this->student)
+    $responseGet = $this->actingAs($this->buyer)
         ->withSession(['impersonated_by' => $this->admin->id])
         ->get(route('users.leave-impersonation'));
 
-    $responseGet->assertRedirect(route('teacher.dashboard'));
-    expect(auth()->id())->toBe($this->admin->id);
-    expect(session('impersonated_by'))->toBeNull();
+    $responseGet->assertStatus(409);
+    expect($responseGet->headers->get('X-Inertia-Location'))->toBe(route('admin.commerce.index'))
+        ->and(auth()->id())->toBe($this->admin->id)
+        ->and(session('impersonated_by'))->toBeNull();
 });
 
 test('superadmin already impersonating can switch to another user', function () {
-    $otherStudent = User::factory()->create([
-        'role' => 'student',
-        'grade_level_id' => $this->gradeLevel->id,
-        'section_id' => $this->section->id,
-    ]);
+    $otherSeller = User::factory()->create(['role' => 'seller']);
 
-    // Currently impersonating $this->teacher
-    $response = $this->actingAs($this->teacher)
+    $response = $this->actingAs($this->seller)
         ->withSession(['impersonated_by' => $this->admin->id])
-        ->post(route('admin.users.impersonate', $otherStudent));
+        ->post(route('admin.users.impersonate', $otherSeller));
 
-    $response->assertRedirect(route('student.dashboard'));
-    expect(auth()->id())->toBe($otherStudent->id);
-    expect(session('impersonated_by'))->toBe($this->admin->id);
+    $response->assertRedirect(route('seller.dashboard'));
+    expect(auth()->id())->toBe($otherSeller->id)
+        ->and(session('impersonated_by'))->toBe($this->admin->id);
 });
 
 test('non-superadmin cannot impersonate', function () {
-    $response = $this->actingAs($this->teacher)
-        ->post(route('admin.users.impersonate', $this->student));
+    $response = $this->actingAs($this->seller)
+        ->post(route('admin.users.impersonate', $this->buyer));
 
     $response->assertStatus(403);
 });

@@ -16,9 +16,7 @@ const accountHref = computed(() =>
           ? '/admin/commerce'
           : role.value === 'buyer'
             ? '/account'
-            : user.value
-              ? '/portal'
-              : '/login',
+            : '/login',
 );
 const accountLabel = computed(() =>
     role.value === 'seller'
@@ -28,7 +26,7 @@ const accountLabel = computed(() =>
           : role.value === 'buyer'
             ? 'My account'
             : user.value
-              ? 'EduPulse portal'
+              ? 'Account'
               : 'Sign in',
 );
 

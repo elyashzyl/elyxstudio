@@ -35,19 +35,19 @@ function adminCommerceProduct(array $attributes = []): Product
 }
 
 test('only superadmins can access the commerce workspace', function () {
-    $teacher = User::factory()->create(['role' => 'teacher']);
+    $seller = User::factory()->create(['role' => 'seller']);
 
-    $this->actingAs($teacher)
-        ->get(route('teacher.commerce.index'))
+    $this->actingAs($seller)
+        ->get(route('admin.commerce.index'))
         ->assertForbidden();
 
     $admin = User::factory()->create(['role' => 'superadmin']);
 
     $this->actingAs($admin)
-        ->get(route('teacher.commerce.index'))
+        ->get(route('admin.commerce.index'))
         ->assertOk()
         ->assertInertia(fn ($page) => $page
-            ->component('Teacher/Commerce')
+            ->component('Commerce/AdminDashboard')
             ->where('stats.products', 0));
 });
 
@@ -56,7 +56,7 @@ test('admin commerce payload exposes reservation counts', function () {
     adminCommerceProduct(['reserved_stock' => 2]);
 
     $this->actingAs($admin)
-        ->get(route('teacher.commerce.index'))
+        ->get(route('admin.commerce.index'))
         ->assertInertia(fn ($page) => $page
             ->where('products.0.reserved_stock', 2)
             ->where('products.0.available_stock', 8));
@@ -66,7 +66,7 @@ test('superadmins can create and update catalog products', function () {
     $admin = User::factory()->create(['role' => 'superadmin']);
 
     $this->actingAs($admin)
-        ->post(route('teacher.commerce.products.store'), [
+        ->post(route('admin.commerce.products.store'), [
             'name' => 'Launch Website',
             'slug' => 'launch-website',
             'type' => 'service',
@@ -86,7 +86,7 @@ test('superadmins can create and update catalog products', function () {
         ->and($product->type)->toBe('service');
 
     $this->actingAs($admin)
-        ->patch(route('teacher.commerce.products.update', $product), [
+        ->patch(route('admin.commerce.products.update', $product), [
             'name' => 'Launch Website Plus',
             'slug' => 'launch-website-plus',
             'type' => 'service',
@@ -131,7 +131,7 @@ test('completing an order consumes reserved physical stock', function () {
     ])->save();
 
     $this->actingAs($admin)
-        ->patch(route('teacher.commerce.orders.status', $order), ['status' => 'completed'])
+        ->patch(route('admin.commerce.orders.status', $order), ['status' => 'completed'])
         ->assertRedirect();
 
     expect($product->fresh()->stock)->toBe(8)
@@ -168,7 +168,7 @@ test('cancelling an order releases reserved physical stock without consuming it'
     ])->save();
 
     $this->actingAs($admin)
-        ->patch(route('teacher.commerce.orders.status', $order), ['status' => 'cancelled'])
+        ->patch(route('admin.commerce.orders.status', $order), ['status' => 'cancelled'])
         ->assertRedirect();
 
     expect($product->fresh()->stock)->toBe(10)
@@ -192,7 +192,7 @@ test('unpaid orders cannot enter fulfillment', function () {
     ])->save();
 
     $this->actingAs($admin)
-        ->patch(route('teacher.commerce.orders.status', $order), ['status' => 'confirmed'])
+        ->patch(route('admin.commerce.orders.status', $order), ['status' => 'confirmed'])
         ->assertSessionHasErrors('status');
 
     expect($order->fresh()->status)->toBe('pending');
@@ -214,11 +214,11 @@ test('superadmins can verify payment before moving an order into fulfillment', f
     ])->save();
 
     $this->actingAs($admin)
-        ->patch(route('teacher.commerce.orders.payment-status', $order), ['payment_status' => 'paid'])
+        ->patch(route('admin.commerce.orders.payment-status', $order), ['payment_status' => 'paid'])
         ->assertRedirect();
 
     $this->actingAs($admin)
-        ->patch(route('teacher.commerce.orders.status', $order), ['status' => 'confirmed'])
+        ->patch(route('admin.commerce.orders.status', $order), ['status' => 'confirmed'])
         ->assertRedirect();
 
     expect($order->fresh()->status)->toBe('confirmed')
@@ -241,11 +241,11 @@ test('invalid payment status transitions are rejected', function () {
     ])->save();
 
     $this->actingAs($admin)
-        ->patch(route('teacher.commerce.orders.payment-status', $paidOrder), ['payment_status' => 'failed'])
+        ->patch(route('admin.commerce.orders.payment-status', $paidOrder), ['payment_status' => 'failed'])
         ->assertSessionHasErrors('payment_status');
 
     $this->actingAs($admin)
-        ->patch(route('teacher.commerce.orders.payment-status', $paidOrder), ['payment_status' => 'unpaid'])
+        ->patch(route('admin.commerce.orders.payment-status', $paidOrder), ['payment_status' => 'unpaid'])
         ->assertSessionHasErrors('payment_status');
 
     $failedOrder = new Order;
@@ -262,7 +262,7 @@ test('invalid payment status transitions are rejected', function () {
     ])->save();
 
     $this->actingAs($admin)
-        ->patch(route('teacher.commerce.orders.payment-status', $failedOrder), ['payment_status' => 'paid'])
+        ->patch(route('admin.commerce.orders.payment-status', $failedOrder), ['payment_status' => 'paid'])
         ->assertSessionHasErrors('payment_status');
 
     expect($paidOrder->fresh()->payment_status)->toBe('paid')
@@ -297,7 +297,7 @@ test('failed payment releases inventory and cancels the order', function () {
     ])->save();
 
     $this->actingAs($admin)
-        ->patch(route('teacher.commerce.orders.payment-status', $order), ['payment_status' => 'failed'])
+        ->patch(route('admin.commerce.orders.payment-status', $order), ['payment_status' => 'failed'])
         ->assertRedirect();
 
     expect($product->fresh()->reserved_stock)->toBe(0)
@@ -311,11 +311,11 @@ test('reserved products reject unsafe stock changes', function () {
     $product = adminCommerceProduct(['reserved_stock' => 2]);
 
     $this->actingAs($admin)
-        ->patch(route('teacher.commerce.products.update', $product), ['stock' => 1])
+        ->patch(route('admin.commerce.products.update', $product), ['stock' => 1])
         ->assertSessionHasErrors('stock');
 
     $this->actingAs($admin)
-        ->patch(route('teacher.commerce.products.update', $product), ['stock' => null])
+        ->patch(route('admin.commerce.products.update', $product), ['stock' => null])
         ->assertSessionHasErrors('stock');
 
     expect($product->fresh()->stock)->toBe(10);

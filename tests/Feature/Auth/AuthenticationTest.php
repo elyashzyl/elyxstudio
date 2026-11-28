@@ -11,7 +11,7 @@ test('login screen can be rendered', function () {
 });
 
 test('users can authenticate using the login screen', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->create(['role' => 'buyer']);
 
     $response = $this->post(route('login.store'), [
         'email' => $user->email,
@@ -19,8 +19,25 @@ test('users can authenticate using the login screen', function () {
     ]);
 
     $this->assertAuthenticated();
-    $target = $user->isTeacher() || $user->isSuperadmin() ? route('teacher.dashboard', absolute: false) : route('student.dashboard', absolute: false);
-    $response->assertRedirect($target);
+    $response->assertRedirect(route('account', absolute: false));
+});
+
+test('sellers are sent to the seller dashboard after authentication', function () {
+    $user = User::factory()->create(['role' => 'seller']);
+
+    $this->post(route('login.store'), [
+        'email' => $user->email,
+        'password' => 'password',
+    ])->assertRedirect(route('seller.dashboard', absolute: false));
+});
+
+test('superadmins are sent to the admin workspace after authentication', function () {
+    $user = User::factory()->create(['role' => 'superadmin']);
+
+    $this->post(route('login.store'), [
+        'email' => $user->email,
+        'password' => 'password',
+    ])->assertRedirect(route('admin.commerce.index', absolute: false));
 });
 
 test('users with two factor enabled are redirected to two factor challenge', function () {

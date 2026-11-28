@@ -60,7 +60,7 @@
                             class="mt-1.5 text-xs leading-relaxed"
                             style="color: var(--gl-text-secondary)"
                         >
-                            EduPulse uses essential cookies and secure local
+                            ELYX Studio uses essential cookies and secure local
                             storage to keep you authenticated, safeguard your
                             account, and remember your visual theme. We never
                             sell your data or use third-party ad trackers.
@@ -117,7 +117,7 @@ import { Link } from '@inertiajs/vue3';
 import { Cookie, X } from '@lucide/vue';
 import { ref, onMounted } from 'vue';
 
-const STORAGE_KEY = 'edupulse_cookie_consent';
+const STORAGE_KEY = 'elyx_cookie_consent';
 const visible = ref(false);
 
 onMounted(() => {
