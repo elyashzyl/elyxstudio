@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { Form, Head, Link } from '@inertiajs/vue3';
+import { Form, Head } from '@inertiajs/vue3';
+import { Check, ShoppingBag, Store } from '@lucide/vue';
 import { ref } from 'vue';
-import { ArrowLeft, ShoppingBag, Store, Sparkles } from '@lucide/vue';
+import ElyxAuthShell from '@/components/ElyxAuthShell.vue';
 import InputError from '@/components/InputError.vue';
 import PasswordInput from '@/components/PasswordInput.vue';
 import TextLink from '@/components/TextLink.vue';
@@ -13,75 +14,173 @@ import { Spinner } from '@/components/ui/spinner';
 const props = defineProps<{ passwordRules: string }>();
 
 const role = ref('buyer');
-
-defineOptions({
-    layout: {
-        title: 'Create an account',
-        description: 'Join the ELYX Studio community.',
-    },
-});
 </script>
 
 <template>
-    <Head title="Create your ELYX account" />
-    <div class="login-dark fixed inset-0 flex overflow-y-auto" style="background: var(--gl-bg)">
-        <Link href="/" class="absolute top-5 left-5 z-30 inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-semibold" style="background: var(--gl-surface-2); color: var(--gl-text-secondary); border: 1px solid var(--gl-border)">
-            <ArrowLeft class="h-3.5 w-3.5" /> Back to home
-        </Link>
+    <Head title="Create an ELYX account" />
 
-        <div class="mx-auto flex w-full max-w-md flex-col justify-center px-6 py-20">
-            <div class="mb-8 text-center">
-                <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl text-white" style="background: linear-gradient(135deg, #27a9e8, #0f6ea8); box-shadow: 0 10px 30px rgba(39,169,232,.25)">
-                    <Sparkles class="h-6 w-6" />
-                </div>
-                <p class="text-xs font-bold tracking-[0.2em] uppercase" style="color: var(--gl-primary)">ELYX Studio</p>
-                <h1 class="mt-2 text-2xl font-bold" style="color: var(--gl-text-primary)">Create your account</h1>
-                <p class="mt-2 text-sm" style="color: var(--gl-text-secondary)">Shop digital products, commission a website, or share your own work.</p>
+    <ElyxAuthShell
+        eyebrow="Start building"
+        title="Make room for what is next."
+        description="Join ELYX to discover useful products, commission a website, or share your own work with the studio community."
+    >
+        <Form
+            action="/register"
+            method="post"
+            :reset-on-success="['password', 'password_confirmation']"
+            v-slot="{ errors, processing }"
+            class="grid gap-5 lg:grid-cols-2 lg:gap-x-4 lg:gap-y-2"
+        >
+            <div class="grid gap-2">
+                <Label for="name" class="text-[13px] font-bold text-[#355d78]"
+                    >Full name</Label
+                >
+                <Input
+                    id="name"
+                    name="name"
+                    required
+                    autofocus
+                    autocomplete="name"
+                    placeholder="Your name"
+                    class="h-12 rounded-xl border-[#c7e3f3] bg-[#fbfeff] text-[#102a43] shadow-none placeholder:text-[#8aa4b8] focus-visible:border-[#27a9e8] focus-visible:ring-[#27a9e8]/20 lg:h-10"
+                />
+                <InputError :message="errors.name" />
             </div>
 
-            <Form action="/register" method="post" :reset-on-success="['password', 'password_confirmation']" v-slot="{ errors, processing }" class="space-y-4">
-                <div class="grid gap-1.5">
-                    <Label for="name" style="color: var(--gl-text-secondary)">Full name</Label>
-                    <Input id="name" name="name" required autofocus autocomplete="name" placeholder="Your name" />
-                    <InputError :message="errors.name" />
-                </div>
-                <div class="grid gap-1.5">
-                    <Label for="email" style="color: var(--gl-text-secondary)">Email address</Label>
-                    <Input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com" />
-                    <InputError :message="errors.email" />
-                </div>
+            <div class="grid gap-2">
+                <Label for="email" class="text-[13px] font-bold text-[#355d78]"
+                    >Email address</Label
+                >
+                <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    autocomplete="email"
+                    placeholder="you@example.com"
+                    class="h-12 rounded-xl border-[#c7e3f3] bg-[#fbfeff] text-[#102a43] shadow-none placeholder:text-[#8aa4b8] focus-visible:border-[#27a9e8] focus-visible:ring-[#27a9e8]/20 lg:h-10"
+                />
+                <InputError :message="errors.email" />
+            </div>
 
-                <div class="grid grid-cols-2 gap-3">
-                    <button type="button" class="rounded-2xl border p-4 text-left transition" :style="role === 'buyer' ? { borderColor: 'var(--gl-primary)', background: 'rgba(39,169,232,.12)' } : { borderColor: 'var(--gl-border)', background: 'var(--gl-surface)' }" @click="role = 'buyer'">
-                        <ShoppingBag class="mb-2 h-5 w-5" style="color: var(--gl-primary)" />
-                        <strong class="block text-sm" style="color: var(--gl-text-primary)">Shop as a buyer</strong>
-                        <span class="mt-1 block text-xs" style="color: var(--gl-text-muted)">Track orders and discover ELYX products.</span>
+            <fieldset class="grid gap-3 lg:col-span-2 lg:gap-2">
+                <legend class="text-[13px] font-bold text-[#355d78]">
+                    How will you use ELYX?
+                </legend>
+                <div class="grid gap-3 sm:grid-cols-2">
+                    <button
+                        type="button"
+                        class="relative rounded-2xl border p-4 text-left transition-all focus-visible:ring-2 focus-visible:ring-[#27a9e8]/40 focus-visible:outline-none"
+                        :class="
+                            role === 'buyer'
+                                ? 'border-[#27a9e8] bg-[#e8f7fe] shadow-[0_8px_20px_rgba(39,169,232,0.1)]'
+                                : 'border-[#d7ebf8] bg-[#fbfeff] hover:border-[#a8d8ef] hover:bg-[#f4fbff]'
+                        "
+                        @click="role = 'buyer'"
+                    >
+                        <span
+                            class="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-white text-[#0f6ea8] shadow-sm lg:mb-2"
+                        >
+                            <ShoppingBag class="h-4 w-4" />
+                        </span>
+                        <strong class="block text-sm text-[#102a43]"
+                            >Shop as a buyer</strong
+                        >
+                        <span
+                            class="mt-1 block text-xs leading-5 text-[#55718a]"
+                            >Discover products and track orders.</span
+                        >
+                        <Check
+                            v-if="role === 'buyer'"
+                            class="absolute top-4 right-4 h-4 w-4 text-[#0f6ea8]"
+                        />
                     </button>
-                    <button type="button" class="rounded-2xl border p-4 text-left transition" :style="role === 'seller' ? { borderColor: 'var(--gl-primary)', background: 'rgba(39,169,232,.12)' } : { borderColor: 'var(--gl-border)', background: 'var(--gl-surface)' }" @click="role = 'seller'">
-                        <Store class="mb-2 h-5 w-5" style="color: var(--gl-primary)" />
-                        <strong class="block text-sm" style="color: var(--gl-text-primary)">Sell with ELYX</strong>
-                        <span class="mt-1 block text-xs" style="color: var(--gl-text-muted)">Submit products for admin review and approval.</span>
+
+                    <button
+                        type="button"
+                        class="relative rounded-2xl border p-4 text-left transition-all focus-visible:ring-2 focus-visible:ring-[#27a9e8]/40 focus-visible:outline-none"
+                        :class="
+                            role === 'seller'
+                                ? 'border-[#27a9e8] bg-[#e8f7fe] shadow-[0_8px_20px_rgba(39,169,232,0.1)]'
+                                : 'border-[#d7ebf8] bg-[#fbfeff] hover:border-[#a8d8ef] hover:bg-[#f4fbff]'
+                        "
+                        @click="role = 'seller'"
+                    >
+                        <span
+                            class="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-white text-[#0f6ea8] shadow-sm lg:mb-2"
+                        >
+                            <Store class="h-4 w-4" />
+                        </span>
+                        <strong class="block text-sm text-[#102a43]"
+                            >Sell with ELYX</strong
+                        >
+                        <span
+                            class="mt-1 block text-xs leading-5 text-[#55718a]"
+                            >Submit work for review and approval.</span
+                        >
+                        <Check
+                            v-if="role === 'seller'"
+                            class="absolute top-4 right-4 h-4 w-4 text-[#0f6ea8]"
+                        />
                     </button>
                 </div>
                 <input type="hidden" name="role" :value="role" />
+            </fieldset>
 
-                <div class="grid gap-1.5">
-                    <Label for="password" style="color: var(--gl-text-secondary)">Password</Label>
-                    <PasswordInput id="password" name="password" required autocomplete="new-password" />
-                    <p class="text-[11px]" style="color: var(--gl-text-muted)">{{ props.passwordRules }}</p>
-                    <InputError :message="errors.password" />
-                </div>
-                <div class="grid gap-1.5">
-                    <Label for="password_confirmation" style="color: var(--gl-text-secondary)">Confirm password</Label>
-                    <PasswordInput id="password_confirmation" name="password_confirmation" required autocomplete="new-password" />
-                    <InputError :message="errors.password_confirmation" />
-                </div>
+            <div class="grid gap-2">
+                <Label
+                    for="password"
+                    class="text-[13px] font-bold text-[#355d78]"
+                    >Password</Label
+                >
+                <PasswordInput
+                    id="password"
+                    name="password"
+                    required
+                    autocomplete="new-password"
+                    class="h-12 rounded-xl border-[#c7e3f3] bg-[#fbfeff] text-[#102a43] shadow-none placeholder:text-[#8aa4b8] focus-visible:border-[#27a9e8] focus-visible:ring-[#27a9e8]/20 lg:h-10"
+                />
+                <p
+                    class="text-[11px] leading-5 text-[#8aa4b8] lg:text-[10px] lg:leading-4"
+                >
+                    {{ props.passwordRules }}
+                </p>
+                <InputError :message="errors.password" />
+            </div>
 
-                <Button type="submit" class="w-full" :disabled="processing">
-                    <Spinner v-if="processing" /> Create account
-                </Button>
-                <p class="text-center text-sm" style="color: var(--gl-text-muted)">Already have an account? <TextLink href="/login">Sign in</TextLink></p>
-            </Form>
-        </div>
-    </div>
+            <div class="grid gap-2">
+                <Label
+                    for="password_confirmation"
+                    class="text-[13px] font-bold text-[#355d78]"
+                    >Confirm password</Label
+                >
+                <PasswordInput
+                    id="password_confirmation"
+                    name="password_confirmation"
+                    required
+                    autocomplete="new-password"
+                    class="h-12 rounded-xl border-[#c7e3f3] bg-[#fbfeff] text-[#102a43] shadow-none placeholder:text-[#8aa4b8] focus-visible:border-[#27a9e8] focus-visible:ring-[#27a9e8]/20 lg:h-10"
+                />
+                <InputError :message="errors.password_confirmation" />
+            </div>
+
+            <Button
+                type="submit"
+                class="h-12 w-full rounded-xl bg-[#0f6ea8] text-sm font-bold text-white shadow-[0_10px_22px_rgba(15,110,168,0.2)] transition hover:bg-[#0b527e] lg:col-span-2"
+                :disabled="processing"
+            >
+                <Spinner v-if="processing" />
+                <span v-else>Create your ELYX account</span>
+            </Button>
+        </Form>
+
+        <template #footer>
+            Already have an account?
+            <TextLink
+                href="/login"
+                class="ml-1 font-bold text-[#0f6ea8] hover:text-[#0b527e]"
+                >Sign in</TextLink
+            >
+        </template>
+    </ElyxAuthShell>
 </template>
